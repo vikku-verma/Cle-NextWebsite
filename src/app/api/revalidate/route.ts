@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
         // For now, we'll assume the webhook is configured to send some data
         // We really just need to know that something changed
 
-        console.log("Webhook received for revalidation:", body);
+        // console.log("Webhook received for revalidation:", body); // Disabled for production security
 
         // Revalidate the workshops tag
         revalidateTag('workshops');

@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function WorkshopsPage() {
     const workshops = await fetchWorkshops();
-    console.log(workshops.length);
+
     return (
         <WorkshopsContainer workshops={workshops} categories={LAW_JOURNALS} />
     );
