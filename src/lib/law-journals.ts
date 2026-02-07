@@ -1,0 +1,117 @@
+export interface WorkshopCategory {
+    id: number;
+    title: string;
+    description: string;
+    image: string;
+    slug: string;
+    isNew?: boolean;
+}
+
+export const LAW_JOURNALS: WorkshopCategory[] = [
+    {
+        id: 1,
+        title: "Journal of Constitutional Law and Jurisprudence",
+        description: "Journal of Constitutional Law and Jurisprudence deals with Constitutional law, which is  paramount law of the land and Jurisprudence, which is the theoretical study of laws and principles. The base of Constitutional Law is its philosophy, called ‘Constitutional Jurisprudence’. Constitutional Law determines the fundamental rights of citizens and the obligations of ‘the State’. While discharging the functions under the Constitution, the State is expected to ensure protection of its provisions and philosophy. In the present contexts, many issues are being emerged along with pre existing Constitutional issues. The academia is morally responsible and responsive to synthesise these issues.",
+        image: "https://lawjournals.celnet.in/public/journals/16/journalThumbnail_en_US.jpg",
+        slug: "jclj",
+    },
+    {
+        id: 2,
+        title: "National Journal of Real Estate Law",
+        description: "National Journal of Real estate law involves anything dealing with real property (land). These laws are designed to determine who owns land and the buildings on it, who has a right to possess and use land or buildings, the sale and purchase of real property, landlord and tenant issues, the development of real property, and compliance with local, state, or national regulations affecting the use of real property. An attorney practising real estate law may focus on contractual issues by drafting and reviewing contracts; some real estate attorneys may be more focused on litigation issues, such as determining the ownership of land in court, challenging or enforcing easements, seeking to allow the specific development of property, or trying to prevent or alter a planned development of real property. In addition, an attorney practicing real estate law may focus on a specific type of real estate law or a related area of law, such as oil and gas or natural resources law.",
+        image: "https://lawjournals.celnet.in/public/journals/15/journalThumbnail_en_US.jpg",
+        slug: "njrel",
+    },
+    {
+        id: 3,
+        title: "Indian Journal of Health and Medical Law",
+        description: "The Indian Journal of Health and Medical Law covers the practice of law encompassing many different disciplines. Health lawyers can represent hospitals, physician groups, health maintenance organizations (HMOs), or individual doctors, among many others. Government health lawyers can investigate fraud, deal with Medicare policy and compliance or oversee public health policy. Many health lawyers are engaged in the business of health care spending significant time in mergers and acquisitions, tax law, employee benefits and risk management issues. The impact of technology on health care has been great with health lawyers helping to guide their clients through intellectual property, biomedicine, and telemedicine issues. Other health lawyers specialize in bioethics and clinical ethics representing universities and other research academic centers.",
+        image: "https://lawjournals.celnet.in/public/journals/14/journalThumbnail_en_US.jpg",
+        slug: "ijhaml",
+    },
+    {
+        id: 4,
+        title: "National Journal of Environmental Law",
+        description: "National Journal of Environmental Law invites the legal practitioners, academicians and scholars seeking to make a positive impact on the universe through environmental concerns,   through their efforts. Maintenance of a healthy environment is a key concern for the world of today. Through this Journal, a light is thrown on major issues related to environment, steps taken to mitigate the misuse of natural resources and the laws framed by the authorities to restore a healthy environment for the present as well as upcoming generations.",
+        image: "https://lawjournals.celnet.in/public/journals/13/journalThumbnail_en_US.jpg",
+        slug: "njel",
+    },
+    {
+        id: 5,
+        title: "Journal of Law of Torts and Consumer Protection Law",
+        description: "Journal of Law of Torts and Consumer Protection Law publishes manuscripts related to law of torts which is primarily concerned with redressal of wrongful civil actions by awarding compensation. In a society where people live together, conflict of interests are bound to occur and they may, from time to time cause damage to one or the other. In addition, with the rapid industrialization, tortious liability has come to be used against manufacturers and industrial units. For making markets work for both businesses and consumers, consumer protection is essential. In order to save the consumers from adulterated and imperfect goods & insufficient services, consumer protection laws are very essential for any nation and every nation should incorporate them for the smooth functioning of market economy.",
+        image: "https://lawjournals.celnet.in/public/journals/12/journalThumbnail_en_US.jpg",
+        slug: "jlotcpl",
+    },
+    {
+        id: 6,
+        title: "Journal of Corporate Governance and International Business Law",
+        description: "Journal of Corporate Governance and International Business Law is a peer reviewed  Journal. In a broad sense, corporate governance is about how firms should be governed so that they run effectively and efficiently. This Journal takes a broad perspective on corporate governance mechanisms and considers possible synergies between corporate governance and international business (IB) research.",
+        image: "https://lawjournals.celnet.in/public/journals/11/journalThumbnail_en_US.jpg",
+        slug: "jcgigbl",
+    },
+    {
+        id: 7,
+        title: "National Journal of Labour and Industrial Law",
+        description: "National Journal of Labour and Industrial Law is a peer reviewd Journal encircling the labour law, also known as employment law and is about the body of laws, administrative rulings and precedents which address the legal rights  and restrictions on working people and their organizations. As such, it mediates many aspects of the relationship between trade unions, employers and employees. In other words, Labour law defines the rights and obligations as workers, union members and employers in the workplace. Journal of Labour  and Industrial Law gives scholars, practitioners and professionals an opportunity or platform for research in the field of  law and current case studies on industrial disputes/ Labour Law and submit the valuable findings in the form of review paper, research paper, case studies, short article, book review etc",
+        image: "https://lawjournals.celnet.in/public/journals/9/journalThumbnail_en_US.jpg",
+        slug: "njli",
+    },
+    {
+        id: 8,
+        title: "Journal of Intellectual Property Rights Law",
+        description: "The Journal of Intellectual Property Rights Law is a peer-reviewed research journal dealing with inventions, creations, and other intellectual and intangible types of property. The term \"intellectual property\" is used in its general sense to describe a product of the intellect that has commercial value, including copyrighted property such as literary or artistic works and ideational property such as patents, appellations of origin, business methods, and industrial processes.",
+        image: "https://lawjournals.celnet.in/public/journals/8/journalThumbnail_en_US.jpg",
+        slug: "jipr",
+    },
+    {
+        id: 9,
+        title: "Journal of Family & Adoption Law",
+        description: "Journal of Family & Adoption Law is concerned  about the rights and obligations of spouses, children and other domestic relations. The issues and Judgements related to Family and Adoption Laws in India and abroad are published in the Journal. ",
+        image: "https://lawjournals.celnet.in/public/journals/7/journalThumbnail_en_US.jpg",
+        slug: "jfal",
+    },
+    {
+        id: 10,
+        title: "Journal of Human Rights Law and Practice",
+        description: "Journal of Human Rights Law and Practice  throws light on the fundamental rights of a human being. In order to live with dignity, certain basic rights and freedom are necessary, which all human beings are entitled to. These basic rights are called Human Rights. Human rights belong to everyone, everywhere, regardless of nationality, sexuality, gender, race, religion or age. The foundation of modern human rights is the Universal Declaration of Human Rights (UDHR). This Journal of Human Rights Law and Practice invites research scholars, Practitioners, academicians and delegates who are interested in research work to have an eye view on both national and international perspectives related to Human Rights Law and the declarations that were adopted in 1948 by the United Nations General Assembly which have been integrated into national laws and international treaties in due course of time. The core values of the UDHR - human dignity, fairness, equality, non-discrimination - apply to everyone and everywhere.",
+        image: "https://lawjournals.celnet.in/public/journals/6/journalThumbnail_en_US.jpg",
+        slug: "jhrlp",
+    },
+    {
+        id: 11,
+        title: "National Journal of Criminal Law",
+        description: "National Journal of Criminal Law aims to publish manuscripts relating to a wider knowledge of law and order in the society for protecting the life and liberty of people. People place their ultimate belief in Criminal law for protection against all injuries that humans can inflict on individuals. The National Journal of Criminal Law has been so designed as to generate critical thinking among students, practitioners and eminent academicians about the stated objectives of criminal law and to enable them to scrutinize the recent developments and changes that have taken place in the field.",
+        image: "https://lawjournals.celnet.in/public/journals/5/journalThumbnail_en_US.jpg",
+        slug: "njcl",
+    },
+    {
+        id: 12,
+        title: "Journal of Taxation and Regulatory Framework",
+        description: "Journal of Taxation and Regulatory Framework  is a peer reviewed refereed journal that aims at the dissemination and advancement of research in taxation field contributed by the law students, advocates and other professionals of taxation law. The aim of the Journal is to provide a platform to researchers, practitioners, academicians and professionals associated with the field of Taxation and to encourage and promote research across a wide breadth of areas pertaining to Taxation.",
+        image: "https://lawjournals.celnet.in/public/journals/4/journalThumbnail_en_US.jpg",
+        slug: "jtrf",
+    },
+    {
+        id: 13,
+        title: "Journal of Capital Market and Securities Law",
+        description: " Journal of Capital Market and Securities Law is peer reviewed refereed journal that aims at the dissemination and advancement of research in Capital Markets contributed by law students, advocates and other professionals and explore the challenges of securities markets.The Indian Capital market has grown exponentially in terms of resource mobilization, number of listed stock exchanges, market capitalization and trading volumes. Along with this growth, the profiles of the investors, issuers and intermediaries have changed significantly. The market has witnessed a fundamental institutional change resulting in drastic reduction in transaction costs and significant improvement in efficiency, transparency and safety. The Regulatory measures are taken by the SEBI such as allocation of resources, rolling settlement, sophisticated risk management and derivatives which have greatly improved the framework.",
+        image: "https://lawjournals.celnet.in/public/journals/3/journalThumbnail_en_US.jpg",
+        slug: "jcmsl",
+    },
+    {
+        id: 14,
+        title: "National Journal of Cyber Security Law",
+        description: "National Journal of Cyber Security Law publishes original research and review articles in the interdisciplinary cyber domain. It is a research Journal on various Cyber Security challenges. Scholarly contributions in this discipline are welcome to cover the various aspects of cybersecurity. National Journal of Cyber Security Law provides a hub around which the interdisciplinary Cyber Security community can form a robust knowledge base. This journal is committed to provide quality  research & review literature that is very significant for students, academicians and experts in real-world implications and solutions.",
+        image: "https://lawjournals.celnet.in/public/journals/2/journalThumbnail_en_US.jpg",
+        slug: "njcsl",
+    },
+    {
+        id: 15,
+        title: "Journal of Banking and Insurance Law",
+        description: "The Journal of Banking and Insurance Law  is prepared under the aegis of eminent scholars, Legal experts, academicians, attorneys and other professionals. The scope of the journal is broad and covers topics such as banking, securities, financial services, administrative and general banking & Insurance related laws &  issues arising out of them. The Journal welcomes  all scholars exploring the general subject matter of financial institutions including financial products and markets. Law and strategy makers are under consistent pressure to watch the enthusiasm of buyers. JBIL welcomes contributions from  scholarly community and experts involved in banking & insurance industries.",
+        image: "https://lawjournals.celnet.in/public/journals/1/journalThumbnail_en_US.jpg",
+        slug: "jbil",
+    },
+
+];

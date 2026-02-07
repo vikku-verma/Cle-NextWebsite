@@ -1,26 +1,145 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@plugin "tailwindcss-animate";
+@source "../../src";
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-playfair), Georgia, serif;
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+
+  /* Spacing System */
+  --spacing-container: 80rem; /* max-w-7xl */
+  --spacing-section-desktop: 80px;
+  --spacing-section-tablet: 60px;
+  --spacing-section-mobile: 40px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+
+  /* Light Mode Palette - Charcoal + Brown + Dark Blue */
+  --background: #F4F2EE;
+  --foreground: #1E2A38; /* text_primary */
+
+  --primary: #8A5A2B; /* accent_brown */
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #2E4C7D; /* accent_blue */
+  --secondary-foreground: #FFFFFF;
+
+  --accent: #EEE9DF; /* highlight */
+  --accent-foreground: #2E4C7D;
+
+  --muted: #EEE9DF; /* highlight used for muted bg */
+  --muted-foreground: #6C7688; /* muted_text */
+
+  --card: #FBFAF8; /* card_bg */
+  --card-foreground: #1E2A38;
+
+  --popover: #FBFAF8;
+  --popover-foreground: #1E2A38;
+
+  --border: #D6D0C6;
+  --input: #D6D0C6;
+  --ring: #8A5A2B;
+
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+}
+
+.dark {
+  /* Dark Mode Palette - Charcoal + Brown + Dark Blue */
+  --background: #0F1115;
+  --foreground: #E6E8EB; /* text_primary */
+
+  --primary: #8A5A2B; /* accent_brown */
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #1F3A5F; /* accent_blue */
+  --secondary-foreground: #E6E8EB;
+
+  --accent: #1A2233; /* highlight */
+  --accent-foreground: #E6E8EB;
+
+  --muted: #1A2233; /* highlight */
+  --muted-foreground: #8B93A7; /* muted_text */
+
+  --card: #141822; /* card_bg */
+  --card-foreground: #E6E8EB;
+
+  --popover: #151922; /* surface */
+  --popover-foreground: #E6E8EB;
+
+  --border: #1E2533;
+  --input: #1E2533;
+  --ring: #8A5A2B;
+
+  --destructive: #7F1D1D;
+  --destructive-foreground: #FFFFFF;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300 antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: 0.4px;
+    font-weight: 600;
+  }
+  /* Heading sizes per request */
+  h1 { @apply text-4xl md:text-5xl; }
+  h2 { @apply text-3xl; }
+  h3 { @apply text-2xl; }
+  
+  p {
+      max-width: 68ch;
+  }
+  
+  /* Reset Margins */
+  body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
+    margin: 0;
+  }
+  
+  /* Global Container */
+  .container {
+      @apply max-w-7xl mx-auto px-6;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
