@@ -106,7 +106,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                                 key={workshop.id}
                                 workshop={workshop}
                                 index={index}
-                                fallbackImage={category.image} // Pass category image as fallback
                             />
                         ))}
                     </div>

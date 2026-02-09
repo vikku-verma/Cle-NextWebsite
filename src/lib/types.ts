@@ -9,6 +9,14 @@ export interface Workshop {
     price?: string;
     author?: string;
     image?: string;
+    pricing?: {
+        inr?: number;
+        usd?: number;
+    };
+    workshopStartDate?: string;
+    workshopEndDate?: string;
+    registrationStartDate?: string;
+    registrationEndDate?: string;
 }
 
 export interface WorkshopCategory {
