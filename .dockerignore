@@ -1,0 +1,44 @@
+# Dependent directories
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Secret files
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# Git
+.git
+.gitignore
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor folders and files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build and Temp
+tsconfig.tsbuildinfo
+*.tmp
+*.temp
+.cache/
