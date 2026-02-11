@@ -31,7 +31,7 @@ export async function fetchWorkshops(): Promise<Workshop[]> {
         }
 
         const data = await res.json();
-
+        console.log(data);
         let items: any[] = [];
 
         if (Array.isArray(data)) {
@@ -57,8 +57,9 @@ export async function fetchWorkshops(): Promise<Workshop[]> {
 
             return {
                 id: item.id,
-                // Category Slug: prefer 'bhb5u' (short code) -> 'xxa5l' (full name) -> generic fallback
-                categorySlug: (meta.bhb5u || meta.xxa5l || "").toLowerCase(),
+                name: item.name || "",
+                // Category Slug: prefer 'xdzph' (new mapping) -> 'bhb5u' -> 'xxa5l' -> generic fallback
+                categorySlug: (meta.xdzph || meta.bhb5u || meta.xxa5l || "").toLowerCase(),
                 data: item,
                 // Title: 'vwoxi'
                 title: meta.vwoxi || item.item_name || item.name || "Untitled Workshop",
@@ -84,6 +85,29 @@ export async function fetchWorkshops(): Promise<Workshop[]> {
                 workshopEndDate: (Array.isArray(meta['6cr9u']) ? meta['6cr9u'][0] : meta['6cr9u']) || "",
                 registrationStartDate: (Array.isArray(meta['d0q33']) ? meta['d0q33'][0] : meta['d0q33']) || "",
                 registrationEndDate: (Array.isArray(meta['5gwwk']) ? meta['5gwwk'][0] : meta['5gwwk']) || "",
+
+                // Table display fields
+                workshopHeading: (Array.isArray(meta.n9958) ? meta.n9958[0] : meta.n9958) || "",
+                mentorName: (Array.isArray(meta['1btvm']) ? meta['1btvm'][0] : meta['1btvm']) || "",
+                schedule: (Array.isArray(meta['37m4n']) ? meta['37m4n'][0] : meta['37m4n']) || "",
+                duration: (Array.isArray(meta.xsu59) ? meta.xsu59[0] : meta.xsu59) || "",
+                tagline: (Array.isArray(meta.sodgf) ? meta.sodgf[0] : meta.sodgf) || "",
+                registrationEndDateRaw: (Array.isArray(meta.ryr77) ? meta.ryr77[0] : meta.ryr77) || "",
+                programStartDate: (Array.isArray(meta['37m4n']) ? meta['37m4n'][0] : meta['37m4n']) || "",
+                programEndDate: (Array.isArray(meta.ca8o8) ? meta.ca8o8[0] : meta.ca8o8) || "",
+                aboutCourse: (Array.isArray(meta['6c22m']) ? meta['6c22m'][0] : meta['6c22m']) || "",
+                workshopObjectives: (Array.isArray(meta.q3b72) ? meta.q3b72[0] : meta.q3b72) || "",
+                // Workshop Structure
+                day1Title: (Array.isArray(meta.bmc1t) ? meta.bmc1t[0] : meta.bmc1t) || "",
+                day1Description: (Array.isArray(meta.qw8va) ? meta.qw8va[0] : meta.qw8va) || "",
+                day2Title: (Array.isArray(meta['4rh07']) ? meta['4rh07'][0] : meta['4rh07']) || "",
+                day2Description: (Array.isArray(meta.zbjt5) ? meta.zbjt5[0] : meta.zbjt5) || "",
+                day3Title: (Array.isArray(meta.ram1r) ? meta.ram1r[0] : meta.ram1r) || "",
+                day3Description: (Array.isArray(meta.gycx9) ? meta.gycx9[0] : meta.gycx9) || "",
+                day4Title: (Array.isArray(meta['2k4gy']) ? meta['2k4gy'][0] : meta['2k4gy']) || "",
+                day4Description: (Array.isArray(meta.dyxd4) ? meta.dyxd4[0] : meta.dyxd4) || "",
+                day5Title: (Array.isArray(meta.pen1b) ? meta.pen1b[0] : meta.pen1b) || "",
+                day5Description: (Array.isArray(meta.ftll8) ? meta.ftll8[0] : meta.ftll8) || "",
             };
         }).filter(item => item !== null) as Workshop[];
 
@@ -127,6 +151,7 @@ export async function fetchWorkshopById(id: string): Promise<Workshop | null> {
 
         return {
             id: item.id,
+            name: item.name || "",
             // Category Slug: prefer 'bhb5u' (short code) -> 'xxa5l' (full name) -> generic fallback
             categorySlug: (meta.bhb5u || meta.xxa5l || "").toLowerCase(),
             data: item,
@@ -154,6 +179,29 @@ export async function fetchWorkshopById(id: string): Promise<Workshop | null> {
             workshopEndDate: (Array.isArray(meta['6cr9u']) ? meta['6cr9u'][0] : meta['6cr9u']) || "",
             registrationStartDate: (Array.isArray(meta['d0q33']) ? meta['d0q33'][0] : meta['d0q33']) || "",
             registrationEndDate: (Array.isArray(meta['5gwwk']) ? meta['5gwwk'][0] : meta['5gwwk']) || "",
+
+            // Table display fields
+            workshopHeading: (Array.isArray(meta.n9958) ? meta.n9958[0] : meta.n9958) || "",
+            mentorName: (Array.isArray(meta['1btvm']) ? meta['1btvm'][0] : meta['1btvm']) || "",
+            schedule: (Array.isArray(meta['37m4n']) ? meta['37m4n'][0] : meta['37m4n']) || "",
+            duration: (Array.isArray(meta.xsu59) ? meta.xsu59[0] : meta.xsu59) || "",
+            tagline: (Array.isArray(meta.sodgf) ? meta.sodgf[0] : meta.sodgf) || "",
+            registrationEndDateRaw: (Array.isArray(meta.ryr77) ? meta.ryr77[0] : meta.ryr77) || "",
+            programStartDate: (Array.isArray(meta['37m4n']) ? meta['37m4n'][0] : meta['37m4n']) || "",
+            programEndDate: (Array.isArray(meta.ca8o8) ? meta.ca8o8[0] : meta.ca8o8) || "",
+            aboutCourse: (Array.isArray(meta['6c22m']) ? meta['6c22m'][0] : meta['6c22m']) || "",
+            workshopObjectives: (Array.isArray(meta.q3b72) ? meta.q3b72[0] : meta.q3b72) || "",
+            // Workshop Structure
+            day1Title: (Array.isArray(meta.bmc1t) ? meta.bmc1t[0] : meta.bmc1t) || "",
+            day1Description: (Array.isArray(meta.qw8va) ? meta.qw8va[0] : meta.qw8va) || "",
+            day2Title: (Array.isArray(meta['4rh07']) ? meta['4rh07'][0] : meta['4rh07']) || "",
+            day2Description: (Array.isArray(meta.zbjt5) ? meta.zbjt5[0] : meta.zbjt5) || "",
+            day3Title: (Array.isArray(meta.ram1r) ? meta.ram1r[0] : meta.ram1r) || "",
+            day3Description: (Array.isArray(meta.gycx9) ? meta.gycx9[0] : meta.gycx9) || "",
+            day4Title: (Array.isArray(meta['2k4gy']) ? meta['2k4gy'][0] : meta['2k4gy']) || "",
+            day4Description: (Array.isArray(meta.dyxd4) ? meta.dyxd4[0] : meta.dyxd4) || "",
+            day5Title: (Array.isArray(meta.pen1b) ? meta.pen1b[0] : meta.pen1b) || "",
+            day5Description: (Array.isArray(meta.ftll8) ? meta.ftll8[0] : meta.ftll8) || "",
         };
 
     } catch (error) {
@@ -161,3 +209,11 @@ export async function fetchWorkshopById(id: string): Promise<Workshop | null> {
         return null;
     }
 }
+
+export async function fetchWorkshopByName(name: string): Promise<Workshop | null> {
+    // Fetch all workshops and find the one with matching name
+    const allWorkshops = await fetchWorkshops();
+    const workshop = allWorkshops.find(w => w.name === name);
+    return workshop || null;
+}
+

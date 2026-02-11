@@ -1,5 +1,6 @@
 export interface Workshop {
     id: string | number;
+    name?: string; // Raw name from API for URL routing
     categorySlug: string; // Mapped from 'name'
     data: any; // Raw data from API for flexibility
     // Normalized fields for UI
@@ -17,6 +18,28 @@ export interface Workshop {
     workshopEndDate?: string;
     registrationStartDate?: string;
     registrationEndDate?: string;
+    // New fields for table display
+    workshopHeading?: string; // from meta.n9958
+    mentorName?: string; // from meta['1btvm']
+    schedule?: string; // from meta['37m4n']
+    duration?: string; // from meta.xsu59
+    tagline?: string; // from meta.sodgf
+    registrationEndDateRaw?: string; // from meta.ryr77 for countdown timer
+    programStartDate?: string; // from meta['37m4n'] for status badge
+    programEndDate?: string; // from meta.ca8o8 for status badge
+    aboutCourse?: string; // from meta['6c22m'] for About This Course section
+    workshopObjectives?: string; // from meta.q3b72 for Workshop Objectives section
+    // Workshop Structure fields (5 days max)
+    day1Title?: string; // from meta.bmc1t
+    day1Description?: string; // from meta.qw8va
+    day2Title?: string; // from meta['4rh07']
+    day2Description?: string; // from meta.zbjt5
+    day3Title?: string; // from meta.ram1r
+    day3Description?: string; // from meta.gycx9
+    day4Title?: string; // from meta['2k4gy']
+    day4Description?: string; // from meta.dyxd4
+    day5Title?: string; // from meta.pen1b
+    day5Description?: string; // from meta.ftll8
 }
 
 export interface WorkshopCategory {
