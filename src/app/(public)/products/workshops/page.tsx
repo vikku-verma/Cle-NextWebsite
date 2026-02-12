@@ -14,8 +14,19 @@ export default async function ExploreWorkshopsPage() {
   // Create a Set of valid journal slugs for efficient lookup
   const validJournalSlugs = new Set(LAW_JOURNALS.map(j => j.slug.toLowerCase()));
 
-  // Filter workshops that match any valid journal slug
-  const workshops = allWorkshops.filter(w => validJournalSlugs.has(w.categorySlug.toLowerCase()));
+  // Filter workshops that match any valid journal slug and group by categorySlug
+  const uniqueCategoryWorkshops: typeof allWorkshops = [];
+  const seenCategories = new Set<string>();
+
+  allWorkshops.forEach(w => {
+    const slug = w.categorySlug.toLowerCase();
+    if (validJournalSlugs.has(slug) && !seenCategories.has(slug)) {
+      seenCategories.add(slug);
+      uniqueCategoryWorkshops.push(w);
+    }
+  });
+
+  const workshops = uniqueCategoryWorkshops;
 
   return (
     <main className="min-h-screen bg-[#F8FAFC] pt-24 pb-20">
