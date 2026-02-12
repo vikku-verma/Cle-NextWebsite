@@ -55,7 +55,7 @@ export default function WorkshopList({ workshops, variant = "journal" }: { works
                         const displayTitle = isJournalView ? (journal?.title || workshop.title) : workshop.title;
                         const displayDesc = isJournalView ? (journal?.description || workshop.description) : workshop.description;
                         const displayImage = isJournalView ? (journal?.image || workshop.image) : workshop.image;
-                        const displayTag = journal?.title ? journal.title.split(" ").map((w) => w[0]).join("").toUpperCase().slice(0, 6) : "Workshop";
+                        //const displayTag = journal?.title ? journal.title.split(" ").map((w) => w[0]).join("").toUpperCase().slice(0, 6) : "Workshop";
 
                         // Link destination
                         // Link destination
@@ -82,9 +82,9 @@ export default function WorkshopList({ workshops, variant = "journal" }: { works
                                         </div>
                                     )}
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/80 via-transparent to-transparent opacity-60" />
-                                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-extrabold text-[#0f172a] tracking-wider uppercase shadow-sm">
+                                    {/* <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-extrabold text-[#0f172a] tracking-wider uppercase shadow-sm">
                                         {displayTag}
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="p-6 flex flex-col flex-1">
                                     <div className="mb-2 flex items-center gap-2 text-xs text-[#92400e] font-bold uppercase tracking-wider">
