@@ -21,7 +21,7 @@ export default function WorkshopList({ workshops, variant = "journal" }: { works
                     <button
                         onClick={() => setViewMode("grid")}
                         className={`p-2 rounded-lg transition-all flex items-center gap-2 text-sm font-bold ${viewMode === "grid"
-                            ? "bg-amber-500 text-white shadow-md"
+                            ? "bg-[#92400e] text-white shadow-md"
                             : "text-slate-400 hover:text-slate-600"
                             }`}
                     >
@@ -30,7 +30,7 @@ export default function WorkshopList({ workshops, variant = "journal" }: { works
                     <button
                         onClick={() => setViewMode("list")}
                         className={`p-2 rounded-lg transition-all flex items-center gap-2 text-sm font-bold ${viewMode === "list"
-                            ? "bg-amber-500 text-white shadow-md"
+                            ? "bg-[#92400e] text-white shadow-md"
                             : "text-slate-400 hover:text-slate-600"
                             }`}
                     >
@@ -58,9 +58,10 @@ export default function WorkshopList({ workshops, variant = "journal" }: { works
                         const displayTag = journal?.title ? journal.title.split(" ").map((w) => w[0]).join("").toUpperCase().slice(0, 6) : "Workshop";
 
                         // Link destination
+                        // Link destination
                         const linkHref = isJournalView
-                            ? `/products/workshops/${workshop.categorySlug}`
-                            : `/products/workshops/${workshop.id}`;
+                            ? `/products/workshops/${workshop.categorySlug || 'general'}`
+                            : `/products/workshops/${workshop.categorySlug || 'general'}/${workshop.id}`;
 
                         return (
                             <Link
@@ -86,7 +87,7 @@ export default function WorkshopList({ workshops, variant = "journal" }: { works
                                     </div>
                                 </div>
                                 <div className="p-6 flex flex-col flex-1">
-                                    <div className="mb-2 flex items-center gap-2 text-xs text-amber-600 font-bold uppercase tracking-wider">
+                                    <div className="mb-2 flex items-center gap-2 text-xs text-[#92400e] font-bold uppercase tracking-wider">
                                         {workshop.workshopStartDate && !isJournalView && (
                                             <>
                                                 <Calendar className="w-3 h-3" />
@@ -94,7 +95,7 @@ export default function WorkshopList({ workshops, variant = "journal" }: { works
                                             </>
                                         )}
                                     </div>
-                                    <h3 className="text-xl font-bold text-[#0f172a] mb-2 group-hover:text-amber-600 transition-colors line-clamp-2">
+                                    <h3 className="text-xl font-bold text-[#0f172a] mb-2 group-hover:text-[#92400e] transition-colors line-clamp-2">
                                         {displayTitle}
                                     </h3>
                                     <p className="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-2">
@@ -103,7 +104,7 @@ export default function WorkshopList({ workshops, variant = "journal" }: { works
 
                                     <div className="mt-auto flex items-center justify-between">
                                         {isJournalView ? (
-                                            <span className="w-full text-center px-4 py-2 rounded-xl bg-slate-100 text-[#0f172a] text-sm font-bold group-hover:bg-amber-500 group-hover:text-white transition-all">
+                                            <span className="w-full text-center px-4 py-2 rounded-xl bg-slate-100 text-[#0f172a] text-sm font-bold group-hover:bg-[#92400e] group-hover:text-white transition-all">
                                                 Explore Workshops
                                             </span>
                                         ) : (
@@ -114,7 +115,7 @@ export default function WorkshopList({ workshops, variant = "journal" }: { works
                                                         {workshop.pricing?.inr ? `₹${workshop.pricing.inr}` : (workshop.pricing?.usd ? `$${workshop.pricing.usd}` : "Free")}
                                                     </span>
                                                 </div>
-                                                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#0f172a] group-hover:bg-amber-500 group-hover:text-white transition-all shadow-sm">
+                                                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#0f172a] group-hover:bg-[#92400e] group-hover:text-white transition-all shadow-sm">
                                                     <ArrowRight className="w-4 h-4" />
                                                 </div>
                                             </>
@@ -137,14 +138,14 @@ export default function WorkshopList({ workshops, variant = "journal" }: { works
                         const displayTag = journal?.title || workshop.categorySlug || "Workshop";
 
                         const linkHref = isJournalView
-                            ? `/products/workshops/${workshop.categorySlug}`
-                            : `/products/workshops/${workshop.id}`;
+                            ? `/products/workshops/${workshop.categorySlug || 'general'}`
+                            : `/products/workshops/${workshop.categorySlug || 'general'}/${workshop.id}`;
 
                         return (
                             <Link
                                 key={workshop.id}
                                 href={linkHref}
-                                className="group flex items-center gap-6 bg-white p-4 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-amber-200 transition-all"
+                                className="group flex items-center gap-6 bg-white p-4 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-amber-900/30 transition-all"
                             >
                                 <div className="w-24 h-24 rounded-2xl overflow-hidden shrink-0 bg-slate-100">
                                     {displayImage ? (
@@ -161,7 +162,7 @@ export default function WorkshopList({ workshops, variant = "journal" }: { works
                                 </div>
                                 <div className="flex-1">
                                     <div className="flex items-center gap-2 mb-1">
-                                        <span className="text-[10px] font-black text-amber-600 uppercase tracking-widest">
+                                        <span className="text-[10px] font-black text-[#92400e] uppercase tracking-widest">
                                             {displayTag}
                                         </span>
                                         {!isJournalView && (
@@ -182,7 +183,7 @@ export default function WorkshopList({ workshops, variant = "journal" }: { works
                                 </div>
                                 <div className="pr-4 text-right">
                                     {isJournalView ? (
-                                        <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 text-slate-400 group-hover:bg-amber-100 group-hover:text-amber-500 transition-all">
+                                        <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 text-slate-400 group-hover:bg-amber-900/20 group-hover:text-[#92400e] transition-all">
                                             <ArrowRight className="w-4 h-4" />
                                         </div>
                                     ) : (
@@ -190,7 +191,7 @@ export default function WorkshopList({ workshops, variant = "journal" }: { works
                                             <div className="text-sm font-bold text-[#0f172a] mb-1">
                                                 {workshop.pricing?.inr ? `₹${workshop.pricing.inr}` : (workshop.pricing?.usd ? `$${workshop.pricing.usd}` : "Free")}
                                             </div>
-                                            <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 text-slate-400 group-hover:bg-amber-100 group-hover:text-amber-500 transition-all">
+                                            <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 text-slate-400 group-hover:bg-amber-900/20 group-hover:text-[#92400e] transition-all">
                                                 <ArrowRight className="w-4 h-4" />
                                             </div>
                                         </>

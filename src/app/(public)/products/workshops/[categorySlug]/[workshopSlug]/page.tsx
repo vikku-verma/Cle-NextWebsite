@@ -3,6 +3,7 @@ import { ChevronRight, Download } from "lucide-react";
 import { fetchWorkshopByName } from "@/lib/api/workshops";
 import { notFound } from "next/navigation";
 import CountdownTimer from "@/components/CountdownTimer";
+import { getWorkshopStatus } from "@/lib/utils/date";
 
 interface PageProps {
     params: {
@@ -22,7 +23,11 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
     }
 
     const workshopName = workshop.workshopHeading || workshop.title;
+    console.log(`WorkshopDetailPage [${params.workshopSlug}]: Fetched Data:`, JSON.stringify(workshop, null, 2));
     const tagline = workshop.tagline || workshop.description;
+
+    // Get workshop status using utility function
+    const status = getWorkshopStatus(workshop.programStartDate, workshop.programEndDate);
 
     return (
         <main className="min-h-screen bg-[#F8FAFC] pt-24 pb-20">
@@ -34,75 +39,21 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
                 <div className="container mx-auto px-6 relative z-10">
                     {/* Breadcrumb */}
                     <nav className="flex items-center gap-2 text-slate-400 text-[10px] uppercase tracking-widest font-semibold mb-8">
-                        <Link href="/" className="hover:text-amber-500 transition-colors">
+                        <Link href="/" className="hover:text-[#92400e] transition-colors">
                             Home
                         </Link>
                         <ChevronRight className="w-3 h-3" />
-                        <Link href="/products/workshops" className="hover:text-amber-500 transition-colors">
-                            Courses
+                        <Link href="/products/workshops" className="hover:text-[#92400e] transition-colors">
+                            Workshops
                         </Link>
                         <ChevronRight className="w-3 h-3" />
-                        <span className="text-amber-500">{workshopName}</span>
+                        <span className="text-[#92400e]">{workshopName}</span>
                     </nav>
 
                     {/* Workshop Status Badge */}
-                    {(() => {
-                        const now = new Date().getTime();
-                        let startDate: number | null = null;
-                        let endDate: number | null = null;
-
-                        // Parse start date
-                        if (workshop.programStartDate) {
-                            try {
-                                // Convert ordinal dates if needed
-                                const ordinalPattern = /(\d+)(st|nd|rd|th)\s+(\w+)\s+(\d{4})/;
-                                const match = workshop.programStartDate.match(ordinalPattern);
-                                const convertedStart = match
-                                    ? `${match[3]} ${match[1]}, ${match[4]}`
-                                    : workshop.programStartDate;
-                                startDate = new Date(convertedStart).getTime();
-                            } catch (e) {
-                                console.error('Error parsing start date:', e);
-                            }
-                        }
-
-                        // Parse end date
-                        if (workshop.programEndDate) {
-                            try {
-                                const ordinalPattern = /(\d+)(st|nd|rd|th)\s+(\w+)\s+(\d{4})/;
-                                const match = workshop.programEndDate.match(ordinalPattern);
-                                const convertedEnd = match
-                                    ? `${match[3]} ${match[1]}, ${match[4]}`
-                                    : workshop.programEndDate;
-                                endDate = new Date(convertedEnd).getTime();
-                            } catch (e) {
-                                console.error('Error parsing end date:', e);
-                            }
-                        }
-
-                        // Determine status
-                        let badgeText = "● Live Workshop";
-                        let badgeClass = "bg-gradient-to-r from-[#ef4444] to-[#f87171] animate-pulse shadow-red-500/20";
-
-                        if (startDate && !isNaN(startDate) && endDate && !isNaN(endDate)) {
-                            if (now < startDate) {
-                                badgeText = "● Program Not Started";
-                                badgeClass = "bg-gradient-to-r from-[#64748b] to-[#94a3b8] shadow-slate-500/20";
-                            } else if (now >= startDate && now <= endDate) {
-                                badgeText = "● Program Live";
-                                badgeClass = "bg-gradient-to-r from-[#ef4444] to-[#f87171] animate-pulse shadow-red-500/20";
-                            } else {
-                                badgeText = "● Program Ended";
-                                badgeClass = "bg-gradient-to-r from-[#475569] to-[#64748b] shadow-slate-600/20";
-                            }
-                        }
-
-                        return (
-                            <div className={`inline-block ${badgeClass} text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-8 shadow-lg`}>
-                                {badgeText}
-                            </div>
-                        );
-                    })()}
+                    <div className={`inline-block ${status.className} text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-8 shadow-lg`}>
+                        {status.text}
+                    </div>
 
                     {/* Workshop Name */}
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 font-heading leading-[1.1] max-w-4xl text-white">
@@ -116,7 +67,7 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
 
                     {/* Action Buttons */}
                     <div className="flex flex-wrap gap-4 mb-10">
-                        <button className="bg-gradient-to-r from-[#f59e0b] to-[#d97706] text-white px-10 py-4 rounded-lg font-['Plus_Jakarta_Sans'] font-extrabold text-xs uppercase tracking-widest hover:translate-y-[-2px] transition-all shadow-xl shadow-amber-500/30">
+                        <button className="bg-gradient-to-r from-[#92400e] to-[#78350f] text-white px-10 py-4 rounded-lg font-['Plus_Jakarta_Sans'] font-extrabold text-xs uppercase tracking-widest hover:translate-y-[-2px] transition-all shadow-xl shadow-amber-900/30">
                             Secure Your Spot
                         </button>
                         <button className="bg-white/10 backdrop-blur-md border border-white/20 px-10 py-4 rounded-lg font-['Plus_Jakarta_Sans'] font-extrabold text-xs uppercase tracking-widest hover:bg-white/20 transition-all flex items-center gap-2">

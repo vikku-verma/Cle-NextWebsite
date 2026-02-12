@@ -38,8 +38,8 @@ export function Footer() {
                         <h3 className="font-heading text-lg font-semibold text-foreground">Platform</h3>
                         <ul className="space-y-2 text-muted-foreground">
                             <li><Link href="/products/journals" className="hover:text-primary">Journals</Link></li>
-                            <li><Link href="/books" className="hover:text-primary">Books</Link></li>
-                            <li><Link href="/workshops" className="hover:text-primary">Workshops</Link></li>
+                            <li><Link href="/products/journals?filter=book" className="hover:text-primary">Books</Link></li>
+                            <li><Link href="/products/workshops" className="hover:text-primary">Workshops</Link></li>
                             <li><Link href="/mentors" className="hover:text-primary">Mentorship</Link></li>
                         </ul>
                     </div>

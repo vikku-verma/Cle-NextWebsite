@@ -18,7 +18,8 @@ export function HeroSection() {
                     {/* Text Content */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.6 }}
                         className="flex flex-col justify-center space-y-8"
                     >
@@ -51,7 +52,8 @@ export function HeroSection() {
                     {/* Highlight Event Card */}
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="flex justify-center lg:justify-end"
                     >
@@ -90,7 +92,7 @@ export function HeroSection() {
 
                                     <div className="pt-4">
                                         <Link
-                                            href="https://legal.celnet.in/conference/ilc2026"
+                                            href="https://cle.celnet.in/conference/international-legal-conference-2026/"
                                             target="_blank"
                                             className="inline-flex items-center text-sm font-semibold text-accent hover:text-accent/80"
                                         >

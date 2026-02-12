@@ -1,4 +1,4 @@
-import { Workshop } from "@/lib/types";
+import { Workshop, WordPressFormEntry } from "@/lib/types";
 
 export async function fetchWorkshops(): Promise<Workshop[]> {
     const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
@@ -31,35 +31,36 @@ export async function fetchWorkshops(): Promise<Workshop[]> {
         }
 
         const data = await res.json();
-        console.log(data);
-        let items: any[] = [];
+        let items: WordPressFormEntry[] = [];
 
         if (Array.isArray(data)) {
+            console.log("fetchWorkshops: Raw API Data (Array):", data.length, "items");
             items = data;
         } else if (typeof data === "object" && data !== null) {
-            // Critical Fix: Check if 'data' IS an entry (single object response) vs a Map of entries
-            // Formidable entries usually have 'id'
-            // Based on user sample: key "meta" exists
             if (data.id && data.meta) {
-                // It's a single entry
                 items = [data];
             } else {
-                // It's likely a map { "123": entry, "124": entry }
                 items = Object.values(data);
             }
         }
 
         // Map raw API data to our Workshop interface
-        const workshops: Workshop[] = items.map((item: any) => {
+        const workshops: Workshop[] = items.map((item: WordPressFormEntry) => {
             if (!item || typeof item !== 'object') return null;
 
             const meta = item.meta || {};
+
+            // Helper to safely extract string value from meta field
+            const getMetaString = (value: string | string[] | number | undefined): string => {
+                if (Array.isArray(value)) return String(value[0] || '');
+                return String(value || '');
+            };
 
             return {
                 id: item.id,
                 name: item.name || "",
                 // Category Slug: prefer 'xdzph' (new mapping) -> 'bhb5u' -> 'xxa5l' -> generic fallback
-                categorySlug: (meta.xdzph || meta.bhb5u || meta.xxa5l || "").toLowerCase(),
+                categorySlug: getMetaString(meta.xdzph || meta.bhb5u || meta.xxa5l || "").toLowerCase(),
                 data: item,
                 // Title: 'vwoxi'
                 title: meta.vwoxi || item.item_name || item.name || "Untitled Workshop",
@@ -149,11 +150,17 @@ export async function fetchWorkshopById(id: string): Promise<Workshop | null> {
         const item = data;
         const meta = item.meta || {};
 
+        // Helper to safely extract string value from meta field
+        const getMetaString = (value: string | string[] | number | undefined): string => {
+            if (Array.isArray(value)) return String(value[0] || '');
+            return String(value || '');
+        };
+
         return {
             id: item.id,
             name: item.name || "",
             // Category Slug: prefer 'bhb5u' (short code) -> 'xxa5l' (full name) -> generic fallback
-            categorySlug: (meta.bhb5u || meta.xxa5l || "").toLowerCase(),
+            categorySlug: getMetaString(meta.bhb5u || meta.xxa5l || "").toLowerCase(),
             data: item,
             // Title: 'vwoxi'
             title: meta.vwoxi || item.item_name || item.name || "Untitled Workshop",
@@ -213,7 +220,30 @@ export async function fetchWorkshopById(id: string): Promise<Workshop | null> {
 export async function fetchWorkshopByName(name: string): Promise<Workshop | null> {
     // Fetch all workshops and find the one with matching name
     const allWorkshops = await fetchWorkshops();
+
+    console.log(`fetchWorkshopByName: Looking for '${name}'`);
+    console.log(`fetchWorkshopByName: Available names:`, allWorkshops.map(w => w.name).join(", "));
+
     const workshop = allWorkshops.find(w => w.name === name);
+
+    if (!workshop) {
+        console.log(`fetchWorkshopByName: Workshop '${name}' NOT FOUND. Trying case-insensitive match...`);
+        // Fallback 1: Try case-insensitive comparison
+        const looseMatch = allWorkshops.find(w => w.name?.toLowerCase() === name.toLowerCase());
+        if (looseMatch) {
+            console.log(`fetchWorkshopByName: Found '${looseMatch.name}' via case-insensitive match for '${name}'`);
+            return looseMatch;
+        }
+
+        // Fallback 2: Try matching by ID (string conversion)
+        console.log(`fetchWorkshopByName: Trying ID match for '${name}'...`);
+        const idMatch = allWorkshops.find(w => String(w.id) === name);
+        if (idMatch) {
+            console.log(`fetchWorkshopByName: Found '${idMatch.name}' via ID match for '${name}'`);
+            return idMatch;
+        }
+    }
+
     return workshop || null;
 }
 

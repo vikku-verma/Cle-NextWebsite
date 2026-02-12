@@ -2,7 +2,7 @@ export interface Workshop {
     id: string | number;
     name?: string; // Raw name from API for URL routing
     categorySlug: string; // Mapped from 'name'
-    data: any; // Raw data from API for flexibility
+    data: WordPressFormEntry; // Raw data from API for flexibility
     // Normalized fields for UI
     title: string;
     description: string;
@@ -40,6 +40,15 @@ export interface Workshop {
     day4Description?: string; // from meta.dyxd4
     day5Title?: string; // from meta.pen1b
     day5Description?: string; // from meta.ftll8
+}
+
+// WordPress/Formidable Forms API response structure
+export interface WordPressFormEntry {
+    id: string | number;
+    name?: string;
+    item_name?: string;
+    created_at?: string;
+    meta?: Record<string, string | string[] | number | undefined>;
 }
 
 export interface WorkshopCategory {

@@ -4,14 +4,18 @@ import { ChevronRight, BookOpen } from "lucide-react";
 import { fetchWorkshops } from "@/lib/api/workshops";
 import WorkshopList from "./WorkshopList";
 
+import { LAW_JOURNALS } from "@/lib/law-journals";
+
 export const dynamic = "force-dynamic";
 
 export default async function ExploreWorkshopsPage() {
   const allWorkshops = await fetchWorkshops();
 
-  // Filter for specific journal category as requested: "ijhaml"
-  // This matches "Indian Journal of Health and Medical Law"
-  const workshops = allWorkshops.filter(w => w.categorySlug.toLowerCase() === "ijhaml");
+  // Create a Set of valid journal slugs for efficient lookup
+  const validJournalSlugs = new Set(LAW_JOURNALS.map(j => j.slug.toLowerCase()));
+
+  // Filter workshops that match any valid journal slug
+  const workshops = allWorkshops.filter(w => validJournalSlugs.has(w.categorySlug.toLowerCase()));
 
   return (
     <main className="min-h-screen bg-[#F8FAFC] pt-24 pb-20">
@@ -49,7 +53,7 @@ export default async function ExploreWorkshopsPage() {
       <div className="container mx-auto px-6 mt-16 text-center">
         <div className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-slate-200 rounded-full shadow-sm text-slate-500 text-sm italic">
           <BookOpen className="w-4 h-4 text-amber-500" />
-          Cant find your workshop? <Link href="/contact" className="text-amber-600 font-bold hover:underline not-italic">Contact our support team</Link>
+          Cant find your workshop? <Link href="/contact" className="text-[#92400e] font-bold hover:underline not-italic">Contact our support team</Link>
         </div>
       </div>
     </main>
