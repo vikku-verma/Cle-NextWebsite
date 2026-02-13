@@ -1,32 +1,45 @@
-import { ProductsGrid } from "@/components/products/ProductsGrid";
-import { Button } from "@/components/ui/button";
+import { JournalList } from "@/components/products/JournalList";
 import Link from "next/link";
-import { Plus } from "lucide-react";
+import { ChevronRight, BookOpen } from "lucide-react";
 
 export default function JournalsPage() {
     return (
-        <div className="container py-12 px-4 md:px-6">
+        <main className="min-h-screen bg-[#F8FAFC] pt-24 pb-20">
+            {/* Header Section */}
+            <section className="bg-[#0f172a] text-white py-16 mb-12 relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#f59e0b_0%,transparent_40%)] opacity-10" />
+                <div className="container mx-auto px-6 relative z-10">
+                    <nav className="flex items-center gap-2 text-slate-400 text-xs uppercase tracking-widest font-semibold mb-6">
+                        <Link href="/" className="hover:text-amber-500 transition-colors">Home</Link>
+                        <ChevronRight className="w-3 h-3" />
+                        <Link href="/products" className="hover:text-amber-500 transition-colors">Products</Link>
+                        <ChevronRight className="w-3 h-3" />
+                        <span className="text-amber-500">Law Journals</span>
+                    </nav>
 
-            {/* Header */}
-            <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                <div>
-                    <h1 className="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                        Knowledge Library
-                    </h1>
-                    <p className="mt-4 text-lg text-muted-foreground">
-                        Explore our curated collection of legal journals, books, and courses.
-                    </p>
+                    <div className="max-w-2xl">
+                        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 font-heading leading-tight">
+                            Knowledge <span className="text-amber-500">Library</span>
+                        </h1>
+                        <p className="text-slate-400 text-lg leading-relaxed">
+                            Explore our curated collection of legal journals, books, and courses designed to enhance your legal expertise.
+                        </p>
+                    </div>
                 </div>
-                <Button asChild className="gap-2">
-                    <Link href="/start">
-                        <Plus className="h-4 w-4" /> Publish Your Work
-                    </Link>
-                </Button>
-            </div>
+            </section>
 
             {/* Dynamic Grid */}
-            <ProductsGrid />
+            <div className="container mx-auto px-6">
+                <JournalList />
+            </div>
 
-        </div>
+            {/* Helper Bar */}
+            <div className="container mx-auto px-6 mt-16 text-center">
+                <div className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-slate-200 rounded-full shadow-sm text-slate-500 text-sm italic">
+                    <BookOpen className="w-4 h-4 text-amber-500" />
+                    Cant find your journal? <Link href="/contact" className="text-[#92400e] font-bold hover:underline not-italic">Contact our support team</Link>
+                </div>
+            </div>
+        </main>
     );
 }

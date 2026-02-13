@@ -86,3 +86,49 @@ export function getWorkshopStatus(
         className: "bg-gradient-to-r from-[#ef4444] to-[#f87171] animate-pulse shadow-red-500/20"
     };
 }
+
+/**
+ * Formats a date range string
+ * Example: "26 - 28 February 2026" or "28 Feb - 02 Mar 2026"
+ */
+export function formatDateRange(
+    startDateStr: string | undefined,
+    endDateStr: string | undefined
+): string {
+    if (!startDateStr) return "TBA";
+
+    const startTimestamp = parseDateSafely(startDateStr);
+    if (!startTimestamp) return startDateStr; // Return original if parsing fails
+
+    const startDate = new Date(startTimestamp);
+    const startDay = startDate.getDate();
+    const startMonth = startDate.toLocaleString('default', { month: 'long' });
+    const startYear = startDate.getFullYear();
+
+    if (!endDateStr) {
+        return `${startDay} ${startMonth} ${startYear}`;
+    }
+
+    const endTimestamp = parseDateSafely(endDateStr);
+    if (!endTimestamp) {
+        return `${startDay} ${startMonth} ${startYear}`; // Fallback if end date invalid
+    }
+
+    const endDate = new Date(endTimestamp);
+    const endDay = endDate.getDate();
+    const endMonth = endDate.toLocaleString('default', { month: 'long' });
+    const endYear = endDate.getFullYear();
+
+    // Same Year
+    if (startYear === endYear) {
+        // Same Month
+        if (startMonth === endMonth) {
+            return `${startDay} - ${endDay} ${startMonth} ${startYear}`;
+        }
+        // Different Month
+        return `${startDay} ${startDate.toLocaleString('default', { month: 'short' })} - ${endDay} ${endDate.toLocaleString('default', { month: 'short' })} ${startYear}`;
+    }
+
+    // Different Year
+    return `${startDay} ${startDate.toLocaleString('default', { month: 'short' })} ${startYear} - ${endDay} ${endDate.toLocaleString('default', { month: 'short' })} ${endYear}`;
+}

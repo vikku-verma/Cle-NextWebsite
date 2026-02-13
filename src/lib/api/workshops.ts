@@ -34,7 +34,7 @@ export async function fetchWorkshops(): Promise<Workshop[]> {
         let items: WordPressFormEntry[] = [];
 
         if (Array.isArray(data)) {
-            console.log("fetchWorkshops: Raw API Data (Array):", data.length, "items");
+
             items = data;
         } else if (typeof data === "object" && data !== null) {
             if (data.id && data.meta) {
@@ -109,6 +109,28 @@ export async function fetchWorkshops(): Promise<Workshop[]> {
                 day4Description: (Array.isArray(meta.dyxd4) ? meta.dyxd4[0] : meta.dyxd4) || "",
                 day5Title: (Array.isArray(meta.pen1b) ? meta.pen1b[0] : meta.pen1b) || "",
                 day5Description: (Array.isArray(meta.ftll8) ? meta.ftll8[0] : meta.ftll8) || "",
+                // Hero Image
+                heroImage: (Array.isArray(meta.mrq1c) ? meta.mrq1c[0] : meta.mrq1c) || "",
+                level: (Array.isArray(meta.h03zq) ? meta.h03zq[0] : meta.h03zq) || "",
+                fees: (() => {
+                    const rawFees = meta.mb8ge;
+                    if (!rawFees || typeof rawFees !== 'object' || Array.isArray(rawFees)) return [];
+
+                    // The API returns an object where keys like 'i130', 'i131' contain the fee details.
+                    // We need to iterate over these values.
+                    const feeItems: any[] = [];
+                    Object.values(rawFees).forEach((val: any) => {
+                        if (typeof val === 'object' && val !== null && val.jyrux && val.pdu4i) {
+                            feeItems.push({
+                                category: val.jyrux,
+                                inr: val.pdu4i,
+                                usd: val.ysfzk || ""
+                            });
+                        }
+                    });
+
+                    return feeItems;
+                })(),
             };
         }).filter(item => item !== null) as Workshop[];
 
@@ -209,6 +231,8 @@ export async function fetchWorkshopById(id: string): Promise<Workshop | null> {
             day4Description: (Array.isArray(meta.dyxd4) ? meta.dyxd4[0] : meta.dyxd4) || "",
             day5Title: (Array.isArray(meta.pen1b) ? meta.pen1b[0] : meta.pen1b) || "",
             day5Description: (Array.isArray(meta.ftll8) ? meta.ftll8[0] : meta.ftll8) || "",
+            // Hero Image
+            heroImage: (Array.isArray(meta.mrq1c) ? meta.mrq1c[0] : meta.mrq1c) || "",
         };
 
     } catch (error) {
@@ -221,25 +245,24 @@ export async function fetchWorkshopByName(name: string): Promise<Workshop | null
     // Fetch all workshops and find the one with matching name
     const allWorkshops = await fetchWorkshops();
 
-    console.log(`fetchWorkshopByName: Looking for '${name}'`);
-    console.log(`fetchWorkshopByName: Available names:`, allWorkshops.map(w => w.name).join(", "));
+
 
     const workshop = allWorkshops.find(w => w.name === name);
 
     if (!workshop) {
-        console.log(`fetchWorkshopByName: Workshop '${name}' NOT FOUND. Trying case-insensitive match...`);
+
         // Fallback 1: Try case-insensitive comparison
         const looseMatch = allWorkshops.find(w => w.name?.toLowerCase() === name.toLowerCase());
         if (looseMatch) {
-            console.log(`fetchWorkshopByName: Found '${looseMatch.name}' via case-insensitive match for '${name}'`);
+
             return looseMatch;
         }
 
         // Fallback 2: Try matching by ID (string conversion)
-        console.log(`fetchWorkshopByName: Trying ID match for '${name}'...`);
+
         const idMatch = allWorkshops.find(w => String(w.id) === name);
         if (idMatch) {
-            console.log(`fetchWorkshopByName: Found '${idMatch.name}' via ID match for '${name}'`);
+
             return idMatch;
         }
     }

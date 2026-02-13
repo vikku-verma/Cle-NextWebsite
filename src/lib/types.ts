@@ -40,6 +40,15 @@ export interface Workshop {
     day4Description?: string; // from meta.dyxd4
     day5Title?: string; // from meta.pen1b
     day5Description?: string; // from meta.ftll8
+    heroImage?: string; // from meta.mrq1c
+    level?: string; // from meta.h03zq
+    fees?: FeeStructure[]; // from meta.mb8ge
+}
+
+export interface FeeStructure {
+    category: string; // jyrux
+    inr: string; // pdu4i
+    usd: string; // ysfzk
 }
 
 // WordPress/Formidable Forms API response structure

@@ -4,6 +4,7 @@ import { ChevronRight, Filter } from "lucide-react";
 import { fetchWorkshops } from "@/lib/api/workshops";
 import WorkshopList from "../WorkshopList";
 import { LAW_JOURNALS } from "@/lib/law-journals";
+import { formatDateRange } from "@/lib/utils/date";
 
 export const dynamic = "force-dynamic";
 
@@ -162,7 +163,7 @@ export default async function JournalWorkshopsPage({ params }: PageProps) {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                         </svg>
                                         <span className="font-medium">
-                                            {workshop.schedule || workshop.workshopStartDate || 'TBA'}
+                                            {formatDateRange(workshop.programStartDate, workshop.programEndDate)}
                                         </span>
                                     </div>
 
