@@ -50,8 +50,9 @@ export function Footer() {
                         <ul className="space-y-2 text-muted-foreground">
                             <li><Link href="/about" className="hover:text-primary">About Us</Link></li>
                             <li><Link href="/contact" className="hover:text-primary">Contact</Link></li>
-                            <li><Link href="/submit" className="hover:text-primary">Submit Paper</Link></li>
+                            <li><Link href="https://manuscript-engine.journalslibrary.com/conferences/entry/31140/" className="hover:text-primary">Submit Paper</Link></li>
                             <li><Link href="/privacy" className="hover:text-primary">Privacy Policy</Link></li>
+                            <li><Link href="/terms" className="hover:text-primary">Terms of Service</Link></li>
                         </ul>
                     </div>
 

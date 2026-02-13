@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Star, Shield, Zap } from "lucide-react";
+import { Check, Star, Shield, Zap, BookOpen, Briefcase, Building2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PriceDisplay } from "@/components/shared/PriceDisplay";
@@ -75,35 +75,53 @@ export default function MembershipPage() {
                     {plans.map((plan) => (
                         <div
                             key={plan.name}
-                            className={`relative rounded-2xl bg-card p-8 shadow-lg flex flex-col border ${plan.popular ? 'border-accent shadow-accent/10 scale-105' : 'border-border'}`}
+                            className={`relative rounded-2xl bg-card p-8 shadow-lg flex flex-col border transition-all duration-500 hover:shadow-2xl h-full ${plan.popular ? 'border-primary shadow-primary/20 scale-[1.02] z-10 ring-1 ring-primary/30' : 'border-border'}`}
                         >
                             {plan.popular && (
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                                    Most Popular
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-xl border-2 border-white/20 whitespace-nowrap">
+                                    Most Popular Tier
                                 </div>
                             )}
-                            <h3 className="font-heading text-2xl font-bold text-foreground">{plan.name}</h3>
-                            <div className="mt-4 flex items-baseline">
-                                <span className="text-4xl font-bold tracking-tight text-foreground">
+
+                            <div className="flex items-center gap-5 mb-8">
+                                <div className={`h-16 w-16 rounded-2xl flex items-center justify-center shadow-lg transform transition-transform group-hover:rotate-6 ${plan.popular ? 'bg-primary text-white shadow-primary/30' : 'bg-slate-100 text-primary shadow-slate-200'}`}>
+                                    {plan.name === "Student" && <BookOpen className="h-8 w-8" />}
+                                    {plan.name === "Professional" && <Briefcase className="h-8 w-8" />}
+                                    {plan.name === "Institution" && <Building2 className="h-8 w-8" />}
+                                </div>
+                                <div>
+                                    <h3 className="font-heading text-2xl font-black text-slate-900 leading-none mb-1">{plan.name}</h3>
+                                    <p className="text-[10px] uppercase font-bold tracking-widest text-primary/60">Membership Plan</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-baseline mb-8 bg-slate-50 p-4 rounded-xl border border-slate-200/50 shadow-inner">
+                                <span className="text-4xl font-black tracking-tight text-slate-900">
                                     <PriceDisplay amount={plan.price as number | "Custom"} />
                                 </span>
-                                <span className="text-muted-foreground ml-1">{plan.period}</span>
+                                <span className="text-slate-500 ml-2 font-bold text-sm uppercase tracking-wider">{plan.period}</span>
                             </div>
-                            <p className="mt-2 text-muted-foreground text-sm">{plan.description}</p>
 
-                            <ul className="mt-8 space-y-4 flex-1">
-                                {plan.features.map((feature) => (
-                                    <li key={feature} className="flex items-center text-sm">
-                                        <Check className="mr-3 h-4 w-4 text-green-500 shrink-0" />
-                                        {feature}
-                                    </li>
-                                ))}
-                            </ul>
+                            <p className="text-slate-600 text-sm mb-8 leading-relaxed font-medium min-h-[48px] border-l-2 border-primary/20 pl-4">{plan.description}</p>
 
-                            <div className="mt-8">
+                            <div className="space-y-4 flex-1 flex flex-col mb-10">
+                                <p className="text-[11px] uppercase tracking-[0.15em] font-black text-slate-400 mb-2">Exclusive Benefits:</p>
+                                <ul className="space-y-4 min-h-[160px]">
+                                    {plan.features.map((feature) => (
+                                        <li key={feature} className="flex items-start text-sm group">
+                                            <div className="mr-3 mt-1 h-5 w-5 rounded-lg bg-green-500/10 flex items-center justify-center shrink-0 transition-colors group-hover:bg-green-500/20">
+                                                <Check className="h-3 w-3 text-green-600" />
+                                            </div>
+                                            <span className="text-slate-700 font-semibold leading-tight">{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div className="mt-auto pt-8 border-t-2 border-dashed border-slate-100">
                                 <Button
-                                    className={`w-full ${plan.popular ? 'bg-primary' : ''}`}
-                                    variant={plan.variant as "default" | "outline"}
+                                    className={`w-full h-14 text-sm font-black uppercase tracking-[0.1em] transition-all duration-300 rounded-xl ${plan.popular ? 'bg-primary hover:bg-primary/90 text-white shadow-2xl shadow-primary/40 hover:-translate-y-1' : 'bg-transparent border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white shadow-xl shadow-slate-200'}`}
+                                    variant={plan.popular ? "default" : "outline"}
                                     asChild
                                 >
                                     <Link href="/join">{plan.cta}</Link>
