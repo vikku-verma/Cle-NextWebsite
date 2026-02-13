@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { LayoutGrid, List as ListIcon, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export function JournalList() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -86,52 +87,74 @@ export function JournalList() {
                                         <th scope="col" className="px-4 py-3 font-bold border-r border-blue-400 last:border-0">e-ISSN</th>
                                         <th scope="col" className="px-4 py-3 font-bold border-r border-blue-400 last:border-0">Since</th>
                                         <th scope="col" className="px-4 py-3 font-bold border-r border-blue-400 last:border-0">Indexing</th>
-                                        <th scope="col" className="px-4 py-3 font-bold">Plumx</th>
+                                        <th scope="col" className="px-4 py-3 font-bold border-r border-blue-400 last:border-0">Plumx</th>
+                                        <th scope="col" className="px-4 py-3 font-bold">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <AnimatePresence mode="popLayout">
-                                        {filteredJournals.map((journal, index) => (
-                                            <motion.tr
-                                                key={journal.id}
-                                                initial={{ opacity: 0, y: 10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: -10 }}
-                                                transition={{ duration: 0.2, delay: index * 0.05 }}
-                                                className="bg-white border-b hover:bg-slate-50 transition-colors"
-                                            >
-                                                <td className="px-4 py-4 font-medium text-slate-900 border-r border-slate-100">{index + 1}</td>
-                                                <td className="px-4 py-4 border-r border-slate-100">
-                                                    <div className="w-12 h-16 overflow-hidden rounded shadow-sm border border-slate-100">
-                                                        <img src={journal.image} alt={journal.title} className="w-full h-full object-cover" />
-                                                    </div>
-                                                </td>
-                                                <td className="px-4 py-4 font-semibold text-slate-800 border-r border-slate-100 max-w-xs">{journal.title}</td>
-                                                <td className="px-4 py-4 border-r border-slate-100">{journal.issues || 2}</td>
-                                                <td className="px-4 py-4 border-r border-slate-100 uppercase">{journal.abbreviation || journal.slug}</td>
-                                                <td className="px-4 py-4 border-r border-slate-100">{journal.domain || "Law"}</td>
-                                                <td className="px-4 py-4 border-r border-slate-100 font-mono text-xs">{journal.eIssn || "2582-XXXX"}</td>
-                                                <td className="px-4 py-4 border-r border-slate-100">{journal.since || "2018"}</td>
-                                                <td className="px-4 py-4 border-r border-slate-100">
-                                                    <div className="flex gap-1">
+                                        {filteredJournals.map((journal, index) => {
+                                            const externalLink = journal.abbreviation
+                                                ? `https://journals.stmjournals.com/${journal.abbreviation.toLowerCase()}`
+                                                : "https://journals.stmjournals.com";
+
+                                            return (
+                                                <motion.tr
+                                                    key={journal.id}
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: -10 }}
+                                                    transition={{ duration: 0.2, delay: index * 0.05 }}
+                                                    className="bg-white border-b hover:bg-slate-50 transition-colors"
+                                                >
+                                                    <td className="px-4 py-4 font-medium text-slate-900 border-r border-slate-100">{index + 1}</td>
+                                                    <td className="px-4 py-4 border-r border-slate-100">
+                                                        <Link href={`/journals/${journal.slug}`} className="block w-12 h-16 overflow-hidden rounded shadow-sm border border-slate-100 hover:scale-110 transition-transform">
+                                                            <img src={journal.image} alt={journal.title} className="w-full h-full object-cover" />
+                                                        </Link>
+                                                    </td>
+                                                    <td className="px-4 py-4 border-r border-slate-100 max-w-xs">
+                                                        <Link href={`/journals/${journal.slug}`} className="font-semibold text-slate-800 hover:text-[#92400e] transition-colors line-clamp-2">
+                                                            {journal.title}
+                                                        </Link>
+                                                    </td>
+                                                    <td className="px-4 py-4 border-r border-slate-100">{journal.issues || 2}</td>
+                                                    <td className="px-4 py-4 border-r border-slate-100 uppercase font-bold text-[#92400e]">{journal.abbreviation || journal.slug}</td>
+                                                    <td className="px-4 py-4 border-r border-slate-100">{journal.domain || "Law"}</td>
+                                                    <td className="px-4 py-4 border-r border-slate-100 font-mono text-xs">{journal.eIssn || "2582-XXXX"}</td>
+                                                    <td className="px-4 py-4 border-r border-slate-100">{journal.since || "2018"}</td>
+                                                    <td className="px-4 py-4 border-r border-slate-100 text-center">
                                                         {index % 2 === 0 ? (
-                                                            <div className="w-16 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center p-1" title="Google Scholar">
+                                                            <div className="mx-auto w-16 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center p-1" title="Google Scholar">
                                                                 <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Google_Scholar_logo.png" alt="Google Scholar" className="h-full object-contain opacity-80" />
                                                             </div>
                                                         ) : (
                                                             <span className="text-xs text-slate-400 italic">Indexed</span>
                                                         )}
-                                                    </div>
-                                                </td>
-                                                <td className="px-4 py-4">
-                                                    <div className="flex justify-center">
-                                                        <div className="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center">
-                                                            <div className="w-4 h-4 bg-purple-600 rounded-full animate-pulse" />
+                                                    </td>
+                                                    <td className="px-4 py-4 border-r border-slate-100">
+                                                        <div className="flex justify-center">
+                                                            <div className="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center">
+                                                                <div className="w-4 h-4 bg-purple-600 rounded-full animate-pulse" />
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </motion.tr>
-                                        ))}
+                                                    </td>
+                                                    <td className="px-4 py-4 min-w-[140px]">
+                                                        <div className="flex flex-col gap-2">
+                                                            <a
+                                                                href={externalLink}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-[#92400e] text-white text-[10px] font-black uppercase tracking-widest hover:bg-[#78350f] transition-all shadow-sm"
+                                                            >
+                                                                Visit Portal
+                                                                <ListIcon className="w-3 h-3" />
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </motion.tr>
+                                            );
+                                        })}
                                     </AnimatePresence>
                                 </tbody>
                             </table>

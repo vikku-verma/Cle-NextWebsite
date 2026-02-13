@@ -251,7 +251,7 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
                                 <h3 className="text-xl font-extrabold text-white font-heading mb-6 text-center">
                                     Fee Structure
                                 </h3>
-                                <div className="space-y-4">
+                                <div className="space-y-4 text-white">
                                     {workshop.fees && workshop.fees.length > 0 ? (
                                         workshop.fees.map((fee, index) => (
                                             <div key={index} className="flex items-center justify-between border-b border-white/10 pb-2 last:border-0 last:pb-0">
@@ -262,7 +262,7 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
                                                         <span className="font-bold">₹{fee.inr}</span>
                                                     </span>
                                                     {fee.usd && (
-                                                        <span className="flex items-center gap-2 text-slate-400 text-sm">
+                                                        <span className="flex items-center gap-2 text-slate-300 text-sm">
                                                             <span>🇺🇸</span>
                                                             <span className="font-medium">${fee.usd}</span>
                                                         </span>

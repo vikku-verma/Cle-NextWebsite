@@ -12,7 +12,7 @@ export function TopBar() {
                     🔥 Early Bird Offer
                 </span>
                 <span className="inline-block">
-                    Get 10% OFF with code <span className="font-bold text-accent">ILAC26</span>. Valid until 15th Feb 2026.
+                    Get 10% OFF with code <span className="font-bold text-accent">ILAC26</span>. Valid until 28th Feb 2026.
                 </span>
                 <Link
                     href="https://cle.celnet.in/conference/registration-fee/"

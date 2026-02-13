@@ -10,13 +10,14 @@ interface JournalCardProps {
 }
 
 export function JournalCard({ journal, viewMode }: JournalCardProps) {
+    const externalLink = journal.abbreviation
+        ? `https://journals.stmjournals.com/${journal.abbreviation.toLowerCase()}`
+        : "https://journals.stmjournals.com";
+
     if (viewMode === "grid") {
         return (
-            <Link
-                href={`/journals/${journal.slug}`}
-                className="group flex flex-col bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 h-full"
-            >
-                <div className="h-48 relative overflow-hidden bg-slate-100 shrink-0">
+            <div className="group flex flex-col bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 h-full">
+                <Link href={`/journals/${journal.slug}`} className="block h-48 relative overflow-hidden bg-slate-100 shrink-0">
                     <img
                         src={journal.image}
                         alt={journal.title}
@@ -26,42 +27,46 @@ export function JournalCard({ journal, viewMode }: JournalCardProps) {
                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-extrabold text-[#0f172a] tracking-wider uppercase shadow-sm">
                         Vol. {journal.id}
                     </div>
-                </div>
+                </Link>
                 <div className="p-6 flex flex-col flex-1">
                     <div className="mb-2 flex items-center gap-2 text-xs text-[#92400e] font-bold uppercase tracking-wider">
                         <BookOpen className="w-3 h-3" />
                         <span>Legal Journal</span>
                     </div>
-                    <h3 className="text-xl font-bold text-[#0f172a] mb-2 group-hover:text-[#92400e] transition-colors line-clamp-2">
-                        {journal.title}
-                    </h3>
+                    <Link href={`/journals/${journal.slug}`}>
+                        <h3 className="text-xl font-bold text-[#0f172a] mb-2 group-hover:text-[#92400e] transition-colors line-clamp-2">
+                            {journal.title}
+                        </h3>
+                    </Link>
                     <p className="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-3">
                         {journal.description}
                     </p>
 
-                    <div className="mt-auto flex items-center justify-between">
-                        <span className="w-full text-center px-4 py-2 rounded-xl bg-slate-100 text-[#0f172a] text-sm font-bold group-hover:bg-[#92400e] group-hover:text-white transition-all">
-                            Read Journal
-                        </span>
+                    <div className="mt-auto">
+                        <a
+                            href={externalLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center w-full px-4 py-3 rounded-xl bg-[#92400e] text-white text-xs font-black uppercase tracking-widest hover:bg-[#78350f] transition-all shadow-lg shadow-amber-900/10"
+                        >
+                            Visit Portal
+                        </a>
                     </div>
                 </div>
-            </Link>
+            </div>
         );
     }
 
     // List View
     return (
-        <Link
-            href={`/journals/${journal.slug}`}
-            className="group flex items-center gap-6 bg-white p-4 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-amber-900/30 transition-all"
-        >
-            <div className="w-24 h-24 rounded-2xl overflow-hidden shrink-0 bg-slate-100">
+        <div className="group flex items-center gap-6 bg-white p-4 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-amber-900/30 transition-all">
+            <Link href={`/journals/${journal.slug}`} className="w-24 h-24 rounded-2xl overflow-hidden shrink-0 bg-slate-100">
                 <img
                     src={journal.image}
                     alt={journal.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-            </div>
+            </Link>
             <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                     <span className="text-[10px] font-black text-[#92400e] uppercase tracking-widest">
@@ -72,16 +77,24 @@ export function JournalCard({ journal, viewMode }: JournalCardProps) {
                         Vol. {journal.id}
                     </span>
                 </div>
-                <h3 className="text-lg font-bold text-[#0f172a] group-hover:text-[#92400e] transition-colors line-clamp-1">{journal.title}</h3>
-                <p className="text-slate-500 text-sm mt-1 line-clamp-2">
-                    {journal.description}
+                <Link href={`/journals/${journal.slug}`}>
+                    <h3 className="text-lg font-bold text-[#0f172a] group-hover:text-[#92400e] transition-colors line-clamp-1">{journal.title}</h3>
+                </Link>
+                <p className="text-slate-500 text-sm mt-1 line-clamp-1 italic">
+                    {journal.description.substring(0, 100)}...
                 </p>
             </div>
-            <div className="pr-4 text-right">
-                <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 text-slate-400 group-hover:bg-amber-900/20 group-hover:text-[#92400e] transition-all">
-                    <ArrowRight className="w-4 h-4" />
-                </div>
+            <div className="flex flex-col gap-2 min-w-[140px]">
+                <a
+                    href={externalLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#92400e] text-white text-[10px] font-black uppercase tracking-widest hover:bg-[#78350f] transition-all"
+                >
+                    Visit Portal
+                    <ArrowRight className="w-3 h-3" />
+                </a>
             </div>
-        </Link>
+        </div>
     );
 }
