@@ -10,6 +10,7 @@ export interface Workshop {
     price?: string;
     author?: string;
     image?: string;
+    time?: string;
     pricing?: {
         inr?: number;
         usd?: number;

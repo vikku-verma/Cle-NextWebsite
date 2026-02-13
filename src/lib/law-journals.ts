@@ -10,7 +10,7 @@ export interface WorkshopCategory {
     domain?: string;
     eIssn?: string;
     since?: string;
-    indexing?: string[];
+    indexing?: string;
     plumx?: boolean;
 }
 
@@ -24,9 +24,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "JCLJ",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "2583-388X",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -38,9 +38,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "NJREL",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "2581-9682",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -52,9 +52,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "IJHAML",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "2583-8350",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -68,7 +68,7 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         domain: "Law",
         eIssn: "2581-6683",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -80,9 +80,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "JLOTCPL",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "2583-3898",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -94,9 +94,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "JCGIGBL",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "2584-1327",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -108,9 +108,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "NJLI",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "2583-6498",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -122,9 +122,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "JIPR",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "2582-9742",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -136,9 +136,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "JFAL",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "3048-5053",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -150,9 +150,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "JHRLP",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "2581-8155",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -164,9 +164,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "NJCL",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "2581-8244",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -178,9 +178,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "JTRF",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "2584-2269",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -192,9 +192,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "JCMSL",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "2582-6905",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -206,9 +206,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "NJCSL",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "2582-9750",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
     {
@@ -220,9 +220,9 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         issues: 2,
         abbreviation: "JBIL",
         domain: "Law",
-        eIssn: "2582-XXXX",
+        eIssn: "2582-6875",
         since: "2018",
-        indexing: ["Google Scholar"],
+        indexing: "https://storage.googleapis.com/journals-stmjournals-com-wp-media-to-gcp-offload/2022/09/GOOGLE-SCHOLAR-150x150.png",
         plumx: true,
     },
 ];

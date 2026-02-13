@@ -59,7 +59,14 @@ export function getWorkshopStatus(
 } {
     const now = new Date().getTime();
     const start = parseDateSafely(startDate);
-    const end = parseDateSafely(endDate);
+    let end = parseDateSafely(endDate);
+
+    // Adjust end date to cover the entire day (23:59:59)
+    if (end) {
+        const endDateObj = new Date(end);
+        endDateObj.setHours(23, 59, 59, 999);
+        end = endDateObj.getTime();
+    }
 
     if (start && end && !isNaN(start) && !isNaN(end)) {
         if (now < start) {

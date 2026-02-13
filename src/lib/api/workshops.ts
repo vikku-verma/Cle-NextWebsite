@@ -50,6 +50,7 @@ export async function fetchWorkshops(): Promise<Workshop[]> {
 
             const meta = item.meta || {};
 
+
             // Helper to safely extract string value from meta field
             const getMetaString = (value: string | string[] | number | undefined): string => {
                 if (Array.isArray(value)) return String(value[0] || '');
@@ -62,10 +63,10 @@ export async function fetchWorkshops(): Promise<Workshop[]> {
                 // Category Slug: prefer 'xdzph' (new mapping) -> 'bhb5u' -> 'xxa5l' -> generic fallback
                 categorySlug: getMetaString(meta.xdzph || meta.bhb5u || meta.xxa5l || "").toLowerCase(),
                 data: item,
-                // Title: 'vwoxi'
-                title: meta.vwoxi || item.item_name || item.name || "Untitled Workshop",
-                // Description: 'nveuw'
-                description: meta.nveuw || "",
+                // Title: 'vwoxi' or 'n9958' (Workshop Heading) as fallback
+                title: meta.vwoxi || meta.n9958 || item.item_name || item.name || "Untitled Workshop",
+                // Description: 'nveuw' or 'sodgf' (Tagline) as fallback
+                description: meta.nveuw || meta.sodgf || "",
                 // Date: '9uve2-value' (Start Date)
                 date: meta['9uve2-value'] || item.created_at,
                 // Price: Map 'rem8o' (INR) or '7pnnx' (USD). Expected as array in meta.
@@ -80,6 +81,8 @@ export async function fetchWorkshops(): Promise<Workshop[]> {
                 author: meta.lgcq5 || "Guest",
                 // Image: 'fprg8'
                 image: meta.fprg8 || "",
+                // Time: 'rvk4l'
+                time: (Array.isArray(meta.rvk4l) ? meta.rvk4l[0] : meta.rvk4l) || "",
 
                 // Important Dates
                 workshopStartDate: (Array.isArray(meta['9uve2']) ? meta['9uve2'][0] : meta['9uve2']) || "",
@@ -96,19 +99,19 @@ export async function fetchWorkshops(): Promise<Workshop[]> {
                 registrationEndDateRaw: (Array.isArray(meta.ryr77) ? meta.ryr77[0] : meta.ryr77) || "",
                 programStartDate: (Array.isArray(meta['37m4n']) ? meta['37m4n'][0] : meta['37m4n']) || "",
                 programEndDate: (Array.isArray(meta.ca8o8) ? meta.ca8o8[0] : meta.ca8o8) || "",
-                aboutCourse: (Array.isArray(meta['6c22m']) ? meta['6c22m'][0] : meta['6c22m']) || "",
-                workshopObjectives: (Array.isArray(meta.q3b72) ? meta.q3b72[0] : meta.q3b72) || "",
+                aboutCourse: (Array.isArray(meta['6c22m-value']) ? meta['6c22m-value'][0] : meta['6c22m-value']) || "",
+                workshopObjectives: (Array.isArray(meta['q3b72-value']) ? meta['q3b72-value'][0] : meta['q3b72-value']) || "",
                 // Workshop Structure
                 day1Title: (Array.isArray(meta.bmc1t) ? meta.bmc1t[0] : meta.bmc1t) || "",
-                day1Description: (Array.isArray(meta.qw8va) ? meta.qw8va[0] : meta.qw8va) || "",
+                day1Description: (Array.isArray(meta['qw8va-value']) ? meta['qw8va-value'][0] : meta['qw8va-value']) || "",
                 day2Title: (Array.isArray(meta['4rh07']) ? meta['4rh07'][0] : meta['4rh07']) || "",
-                day2Description: (Array.isArray(meta.zbjt5) ? meta.zbjt5[0] : meta.zbjt5) || "",
+                day2Description: (Array.isArray(meta['zbjt5-value']) ? meta['zbjt5-value'][0] : meta['zbjt5-value']) || "",
                 day3Title: (Array.isArray(meta.ram1r) ? meta.ram1r[0] : meta.ram1r) || "",
-                day3Description: (Array.isArray(meta.gycx9) ? meta.gycx9[0] : meta.gycx9) || "",
+                day3Description: (Array.isArray(meta['gycx9-value']) ? meta['gycx9-value'][0] : meta['gycx9-value']) || "",
                 day4Title: (Array.isArray(meta['2k4gy']) ? meta['2k4gy'][0] : meta['2k4gy']) || "",
-                day4Description: (Array.isArray(meta.dyxd4) ? meta.dyxd4[0] : meta.dyxd4) || "",
+                day4Description: (Array.isArray(meta['dyxd4-value']) ? meta['dyxd4-value'][0] : meta['dyxd4-value']) || "",
                 day5Title: (Array.isArray(meta.pen1b) ? meta.pen1b[0] : meta.pen1b) || "",
-                day5Description: (Array.isArray(meta.ftll8) ? meta.ftll8[0] : meta.ftll8) || "",
+                day5Description: (Array.isArray(meta['ftll8-value']) ? meta['ftll8-value'][0] : meta['ftll8-value']) || "",
                 // Hero Image
                 heroImage: (Array.isArray(meta.mrq1c) ? meta.mrq1c[0] : meta.mrq1c) || "",
                 level: (Array.isArray(meta.h03zq) ? meta.h03zq[0] : meta.h03zq) || "",
@@ -202,6 +205,8 @@ export async function fetchWorkshopById(id: string): Promise<Workshop | null> {
             author: meta.lgcq5 || "Guest",
             // Image: 'fprg8'
             image: meta.fprg8 || "",
+            // Time: 'rvk4l'
+            time: (Array.isArray(meta.rvk4l) ? meta.rvk4l[0] : meta.rvk4l) || "",
 
             // Important Dates
             workshopStartDate: (Array.isArray(meta['9uve2']) ? meta['9uve2'][0] : meta['9uve2']) || "",

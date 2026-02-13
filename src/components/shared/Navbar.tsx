@@ -14,7 +14,6 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -151,7 +150,6 @@ export function Navbar() {
 
                 {/* Desktop CTA */}
                 <div className="hidden items-center space-x-4 lg:flex">
-                    <ThemeToggle />
                     <Button variant="ghost" asChild className="hidden xl:flex">
                         <Link href="/login">Log in</Link>
                     </Button>
@@ -162,7 +160,6 @@ export function Navbar() {
 
                 {/* Mobile Menu Trigger */}
                 <div className="flex items-center gap-4 lg:hidden">
-                    <ThemeToggle />
                     <Button
                         variant="ghost"
                         size="icon"

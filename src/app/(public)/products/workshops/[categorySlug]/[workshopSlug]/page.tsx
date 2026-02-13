@@ -5,13 +5,7 @@ import { fetchWorkshopByName } from "@/lib/api/workshops";
 import { notFound } from "next/navigation";
 import CountdownTimer from "@/components/CountdownTimer";
 import { formatDateRange, getWorkshopStatus } from "@/lib/utils/date";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
+
 
 interface PageProps {
     params: {
@@ -62,7 +56,7 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
                             </nav>
 
                             {/* Workshop Status Badge */}
-                            <div className={`inline - block ${status.className} text - white text - [10px] font - black uppercase tracking - widest px - 4 py - 1.5 rounded - full mb - 8 shadow - lg`}>
+                            <div className={`inline-block ${status.className} text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-8 shadow-lg`}>
                                 {status.text}
                             </div>
 
@@ -131,22 +125,23 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
                                 About This Course
                             </h2>
                             {workshop.aboutCourse && (
-                                <div className="text-slate-700 leading-relaxed whitespace-pre-line">
-                                    {workshop.aboutCourse}
-                                </div>
+                                <div
+                                    className="leading-relaxed text-slate-600 space-y-4 [&_h1]:text-2xl [&_h1]:font-bold [&_h1]:text-[#0f172a] [&_h1]:mb-4 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-[#0f172a] [&_h2]:mb-3 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-[#0f172a] [&_h3]:mb-2 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:ml-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:ml-5 [&_ol]:mb-4 [&_li]:mb-2 [&_strong]:font-bold [&_strong]:text-[#0f172a] [&_b]:font-bold [&_b]:text-[#0f172a]"
+                                    dangerouslySetInnerHTML={{ __html: workshop.aboutCourse }}
+                                />
                             )}
                         </div>
-
 
                         {/* Workshop Objectives */}
                         {workshop.workshopObjectives && (
                             <div className="mb-12">
-                                <h3 className="text-2xl font-extrabold text-[#0f172a] font-heading italic">
+                                <h3 className="text-2xl font-extrabold text-[#0f172a] font-heading italic pb-5">
                                     Workshop Objectives
                                 </h3>
-                                <div className="text-slate-700 leading-relaxed whitespace-pre-line">
-                                    {workshop.workshopObjectives}
-                                </div>
+                                <div
+                                    className="leading-relaxed text-slate-600 space-y-4 [&_h1]:text-2xl [&_h1]:font-bold [&_h1]:text-[#0f172a] [&_h1]:mb-4 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-[#0f172a] [&_h2]:mb-3 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-[#0f172a] [&_h3]:mb-2 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:ml-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:ml-5 [&_ol]:mb-4 [&_li]:mb-2 [&_strong]:font-bold [&_strong]:text-[#0f172a] [&_b]:font-bold [&_b]:text-[#0f172a]"
+                                    dangerouslySetInnerHTML={{ __html: workshop.workshopObjectives }}
+                                />
                             </div>
                         )}
 
@@ -188,9 +183,10 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
                                                     </span>
                                                 </summary>
                                                 {day.description && day.description.trim() !== '' && (
-                                                    <div className="mt-4 pt-4 border-t border-slate-200 text-slate-600 text-sm leading-relaxed whitespace-pre-line animate-in fade-in slide-in-from-top-2 duration-300">
-                                                        {day.description}
-                                                    </div>
+                                                    <div
+                                                        className="mt-4 pt-4 border-t border-slate-200 text-slate-600 text-sm leading-relaxed animate-in fade-in slide-in-from-top-2 duration-300 space-y-4 [&_h1]:text-xl [&_h1]:font-bold [&_h1]:text-[#0f172a] [&_h1]:mb-3 [&_h2]:text-lg [&_h2]:font-bold [&_h2]:text-[#0f172a] [&_h2]:mb-2 [&_h3]:text-base [&_h3]:font-bold [&_h3]:text-[#0f172a] [&_h3]:mb-1 [&_p]:mb-3 [&_ul]:list-disc [&_ul]:ml-5 [&_ul]:mb-3 [&_ol]:list-decimal [&_ol]:ml-5 [&_ol]:mb-3 [&_li]:mb-1 [&_strong]:font-bold [&_strong]:text-[#0f172a] [&_b]:font-bold [&_b]:text-[#0f172a]"
+                                                        dangerouslySetInnerHTML={{ __html: day.description }}
+                                                    />
                                                 )}
                                             </details>
                                         ))}
@@ -227,9 +223,17 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
                                     )}
                                     {(workshop.programStartDate || workshop.programEndDate) && (
                                         <div>
-                                            <p className="text-[10px] uppercase tracking-widest font-bold text-slate-500 mb-2">Schedule</p>
+                                            <p className="text-[10px] uppercase tracking-widest font-bold text-slate-500 mb-2">Date</p>
                                             <p className="text-sm font-semibold text-[#0f172a]">
                                                 {formatDateRange(workshop.programStartDate, workshop.programEndDate)}
+                                            </p>
+                                        </div>
+                                    )}
+                                    {workshop.time && (
+                                        <div>
+                                            <p className="text-[10px] uppercase tracking-widest font-bold text-slate-500 mb-2">Time</p>
+                                            <p className="text-sm font-semibold text-[#0f172a]">
+                                                {workshop.time} IST
                                             </p>
                                         </div>
                                     )}
@@ -251,29 +255,18 @@ export default async function WorkshopDetailPage({ params }: PageProps) {
                                     {workshop.fees && workshop.fees.length > 0 ? (
                                         workshop.fees.map((fee, index) => (
                                             <div key={index} className="flex items-center justify-between border-b border-white/10 pb-2 last:border-0 last:pb-0">
-                                                <span className="text-sm uppercase tracking-wider font-bold text-slate-400">{fee.category}</span>
-                                                <div className="text-right">
-                                                    <Select defaultValue="inr">
-                                                        <SelectTrigger className="w-[140px] h-8 bg-slate-800 border-slate-700 text-white text-xs">
-                                                            <SelectValue />
-                                                        </SelectTrigger>
-                                                        <SelectContent className="bg-slate-800 border-slate-700 text-white">
-                                                            <SelectItem value="inr" className="text-xs focus:bg-slate-700 focus:text-white cursor-pointer">
-                                                                <span className="flex items-center gap-2">
-                                                                    <span>🇮🇳</span>
-                                                                    <span className="font-bold">₹{fee.inr}</span>
-                                                                </span>
-                                                            </SelectItem>
-                                                            {fee.usd && (
-                                                                <SelectItem value="usd" className="text-xs focus:bg-slate-700 focus:text-white cursor-pointer">
-                                                                    <span className="flex items-center gap-2">
-                                                                        <span>🇺🇸</span>
-                                                                        <span className="font-bold">${fee.usd}</span>
-                                                                    </span>
-                                                                </SelectItem>
-                                                            )}
-                                                        </SelectContent>
-                                                    </Select>
+                                                <span className="text-sm uppercase tracking-wider font-bold text-slate-100">{fee.category}</span>
+                                                <div className="text-right flex flex-col items-end gap-1">
+                                                    <span className="flex items-center gap-2 text-white">
+                                                        <span>🇮🇳</span>
+                                                        <span className="font-bold">₹{fee.inr}</span>
+                                                    </span>
+                                                    {fee.usd && (
+                                                        <span className="flex items-center gap-2 text-slate-400 text-sm">
+                                                            <span>🇺🇸</span>
+                                                            <span className="font-medium">${fee.usd}</span>
+                                                        </span>
+                                                    )}
                                                 </div>
                                             </div>
                                         ))
