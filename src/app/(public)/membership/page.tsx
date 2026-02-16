@@ -120,8 +120,8 @@ export default function MembershipPage() {
 
                             <div className="mt-auto pt-8 border-t-2 border-dashed border-slate-100">
                                 <Button
-                                    className={`w-full h-14 text-sm font-black uppercase tracking-[0.1em] transition-all duration-300 rounded-xl ${plan.popular ? 'bg-primary hover:bg-primary/90 text-white shadow-2xl shadow-primary/40 hover:-translate-y-1' : 'bg-transparent border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white shadow-xl shadow-slate-200'}`}
-                                    variant={plan.popular ? "default" : "outline"}
+                                    className={`w-full h-14 text-sm font-black uppercase tracking-[0.1em] transition-all duration-300 rounded-xl ${plan.popular ? 'bg-primary hover:bg-primary/90 text-white shadow-2xl shadow-primary/40 hover:-translate-y-1' : 'border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-primary shadow-xl shadow-slate-100'}`}
+                                    variant={plan.popular ? "default" : "ghost"}
                                     asChild
                                 >
                                     <Link href="/join">{plan.cta}</Link>
@@ -132,7 +132,6 @@ export default function MembershipPage() {
                 </div>
             </section>
 
-            {/* Benefits / Why Join */}
             <section className="bg-muted/30 py-16 sm:py-24">
                 <div className="container px-4 md:px-6">
                     <div className="text-center mb-16">
@@ -149,7 +148,7 @@ export default function MembershipPage() {
                             <p className="text-sm text-muted-foreground mt-2">Unlimited access to our archived journals, research papers, and case studies.</p>
                         </div>
                         <div className="flex flex-col items-center text-center p-6">
-                            <div className="h-12 w-12 bg-accent/10 text-accent rounded-full flex items-center justify-center mb-4">
+                            <div className="h-12 w-12 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mb-4">
                                 <Zap className="h-6 w-6" />
                             </div>
                             <h3 className="font-bold text-lg">Career Growth</h3>

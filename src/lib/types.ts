@@ -69,3 +69,31 @@ export interface WorkshopCategory {
     slug: string;
     isNew?: boolean;
 }
+
+export interface Mentor {
+    id: string | number;
+    mentorId: string;
+    empId: string;
+    visibility: "Public" | "Private";
+    name: string;
+    email: string;
+    phone: string;
+    profilePic: string;
+    signature: string;
+    bio: string;
+    qualification: string;
+    passingYear: string;
+    affiliation: string;
+    department: string;
+    gstNo: string;
+    cinNo: string;
+    skills: string[];
+    subject: string;
+    dataType: string;
+    status: "Active" | "Inactive";
+    keywords: string[];
+    preferredFeed: string;
+    empName: string;
+    slug: string;
+    designation: string;
+}

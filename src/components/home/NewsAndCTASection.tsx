@@ -123,7 +123,7 @@ export function NewsAndCTASection() {
                                     <Link href="/membership">Join Membership</Link>
                                 </Button>
                                 <Button size="lg" variant="outline" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 w-full sm:w-auto" asChild>
-                                    <Link href="/submit">Submit Your Paper</Link>
+                                    <Link href="https://manuscript-engine.journalslibrary.com/conferences/entry/31140/">Submit Your Paper</Link>
                                 </Button>
                             </div>
                         </div>
