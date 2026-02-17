@@ -60,7 +60,6 @@ export default function JoinPage() {
         setIsSubmitting(true);
         // Simulate API call
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        console.log("Form Data:", data);
         setIsSubmitting(false);
         setIsSuccess(true);
     };

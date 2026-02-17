@@ -6,6 +6,7 @@ import { Mentor } from "@/lib/types";
 import { User, ShieldCheck, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import NextImage from "next/image";
 
 interface MentorCardProps {
     mentor: Mentor;
@@ -13,6 +14,7 @@ interface MentorCardProps {
 
 export function MentorCard({ mentor }: MentorCardProps) {
     const isActive = mentor.status === "Active";
+    const [imgError, setImgError] = React.useState(false);
 
     return (
         <div className="group bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
@@ -38,11 +40,15 @@ export function MentorCard({ mentor }: MentorCardProps) {
                 {/* Mentor Image */}
                 <div className="relative">
                     <div className="h-24 w-24 rounded-2xl overflow-hidden ring-4 ring-background shadow-xl bg-card">
-                        {mentor.profilePic ? (
-                            <img
+                        {(mentor.profilePic && !imgError) ? (
+                            <NextImage
                                 src={mentor.profilePic}
                                 alt={mentor.name}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                fill
+                                unoptimized
+                                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                sizes="96px"
+                                onError={() => setImgError(true)}
                             />
                         ) : (
                             <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground">
@@ -74,15 +80,10 @@ export function MentorCard({ mentor }: MentorCardProps) {
                 </div>
 
                 {/* Footer Section */}
-                <div className="mt-auto pt-6 border-t border-border flex items-center justify-between">
-                    <div className="flex flex-col">
-                        <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest">Mentor ID</span>
-                        <span className="text-xs font-bold text-muted-foreground italic">#{mentor.mentorId}</span>
-                    </div>
-
+                <div className="mt-auto pt-6 border-t border-border">
                     <Link
                         href={`/mentors/${mentor.slug}`}
-                        className="px-5 py-2.5 bg-primary text-primary-foreground rounded-xl text-xs font-black uppercase tracking-widest hover:bg-primary/90 hover:shadow-lg transition-all duration-300"
+                        className="w-full inline-block py-2.5 bg-primary text-primary-foreground rounded-xl text-xs font-black uppercase tracking-widest hover:bg-primary/90 hover:shadow-lg transition-all duration-300 text-center"
                     >
                         Full Profile
                     </Link>

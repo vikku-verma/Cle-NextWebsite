@@ -1,18 +1,4 @@
-export interface WorkshopCategory {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
-    slug: string;
-    isNew?: boolean;
-    issues?: number;
-    abbreviation?: string;
-    domain?: string;
-    eIssn?: string;
-    since?: string;
-    indexing?: string;
-    plumx?: boolean;
-}
+import { WorkshopCategory } from "@/lib/types";
 
 export const LAW_JOURNALS: WorkshopCategory[] = [
     {
@@ -91,7 +77,7 @@ export const LAW_JOURNALS: WorkshopCategory[] = [
         description: "Journal of Corporate Governance and International Business Law is a peer reviewed  Journal. In a broad sense, corporate governance is about how firms should be governed so that they run effectively and efficiently. This Journal takes a broad perspective on corporate governance mechanisms and considers possible synergies between corporate governance and international business (IB) research.",
         image: "https://lawjournals.celnet.in/public/journals/11/journalThumbnail_en_US.jpg",
         slug: "jcgibL",
-        issues: 2,  
+        issues: 2,
         abbreviation: "JCGIBL",
         domain: "Law",
         eIssn: "2584-1327",

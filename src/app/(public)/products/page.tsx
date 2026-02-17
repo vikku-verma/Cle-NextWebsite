@@ -3,6 +3,7 @@
 import { Mic, BookOpen, FileText, ChevronRight, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import NextImage from "next/image";
 
 const products = [
     {
@@ -54,16 +55,18 @@ export default function ProductsPage() {
             <div className="container mx-auto px-6">
                 <div className="grid gap-12">
                     {products.map((product, index) => (
-                        <div 
+                        <div
                             key={product.title}
                             className={`flex flex-col lg:flex-row gap-8 bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all group ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
                         >
                             {/* Image Part */}
                             <div className="w-full lg:w-1/2 h-[300px] lg:h-auto relative overflow-hidden">
-                                <img 
-                                    src={product.image} 
+                                <NextImage
+                                    src={product.image}
                                     alt={product.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
                                 <div className="absolute bottom-6 left-6">

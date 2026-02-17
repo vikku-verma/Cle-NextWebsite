@@ -1,12 +1,11 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
-import { ChevronRight, Filter } from "lucide-react";
-import { fetchWorkshops } from "@/lib/api/workshops";
-import WorkshopList from "../WorkshopList";
+import { ChevronRight } from "lucide-react";
+import { useWorkshops } from "@/components/workshops/WorkshopsProvider";
 import { LAW_JOURNALS } from "@/lib/law-journals";
 import { formatDateRange } from "@/lib/utils/date";
-
-export const dynamic = "force-dynamic";
 
 interface PageProps {
     params: {
@@ -14,8 +13,8 @@ interface PageProps {
     };
 }
 
-export default async function JournalWorkshopsPage({ params }: PageProps) {
-    const allWorkshops = await fetchWorkshops();
+export default function JournalWorkshopsPage({ params }: PageProps) {
+    const { workshops: allWorkshops } = useWorkshops();
     const { categorySlug } = params;
 
     // Filter workshops by categorySlug

@@ -95,7 +95,7 @@ export async function fetchMentors(): Promise<Mentor[]> {
                     subject: skills[0] || "Legal Expert",
                     dataType: "",
                     status: "Active",
-                    keywords: [],
+                    keywords: skills,
                     preferredFeed: "",
                     empName: name,
                     slug: slug,

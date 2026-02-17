@@ -1,7 +1,7 @@
 "use client";
 
 import useSWR from "swr";
-import { CLEEvent } from "@/lib/schemas";
+import { CLEEvent } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { CalendarDays, MapPin, ArrowRight } from "lucide-react";
 import Link from "next/link";

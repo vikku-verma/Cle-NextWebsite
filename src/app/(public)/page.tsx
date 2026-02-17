@@ -5,7 +5,7 @@ import { NewsAndCTASection } from "../../components/home/NewsAndCTASection";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-16 pb-16">
+    <div className="flex flex-col gap-12 pb-16">
       <HeroSection />
       <AboutSection />
       <ProductsSection />

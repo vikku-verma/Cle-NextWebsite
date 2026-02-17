@@ -24,7 +24,7 @@ export default function PublicationPage() {
                         </p>
                         <div className="pt-4">
                             <Button size="lg" variant="secondary" asChild>
-                                <Link href="/start/product">Start Submission <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                                <Link href="https://manuscript-engine.journalslibrary.com/conferences/entry/31140/">Start Submission <ArrowRight className="ml-2 h-4 w-4" /></Link>
                             </Button>
                         </div>
                     </motion.div>

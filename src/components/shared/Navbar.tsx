@@ -21,17 +21,18 @@ export function Navbar() {
     return (
         <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="container flex h-[72px] items-center justify-between px-6">
-                {/* Logo */}
                 <Link href="/" className="flex items-center space-x-2">
-                    <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold font-serif">
+                    <div className="h-10 w-10 bg-primary rounded-xl flex items-center justify-center text-primary-foreground font-black font-serif shadow-lg shadow-primary/20">
                         C
                     </div>
-                    <span className="font-heading text-lg font-bold tracking-tight text-foreground hidden sm:inline-block">
-                        Centre for Legal Excellence
-                    </span>
-                    <span className="font-heading text-lg font-bold tracking-tight text-foreground sm:hidden">
-                        CLE
-                    </span>
+                    <div className="flex flex-col">
+                        <span className="font-heading text-lg font-black tracking-tighter text-foreground leading-none">
+                            CENTRE FOR
+                        </span>
+                        <span className="font-heading text-sm font-bold tracking-[0.2em] text-primary leading-none mt-1">
+                            LEGAL EXCELLENCE
+                        </span>
+                    </div>
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -61,7 +62,7 @@ export function Navbar() {
                                         <li className="row-span-3">
                                             <NavigationMenuLink asChild>
                                                 <a
-                                                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-[#7A5C2E] hover:bg-[#5F4520] p-6 no-underline outline-none focus:shadow-md transition-colors"
+                                                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-primary hover:bg-primary/90 p-6 no-underline outline-none focus:shadow-md transition-colors"
                                                     href="/products/journals"
                                                 >
                                                     <BookOpen className="h-6 w-6 text-white" />
@@ -78,7 +79,7 @@ export function Navbar() {
                                             <NavigationMenuLink asChild>
                                                 <Link
                                                     href="/products/journals/publication"
-                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#7A5C2E]/10 focus:bg-[#7A5C2E]/10"
+                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-primary/10 focus:bg-primary/10"
                                                 >
                                                     <div className="text-sm font-medium leading-none">Publication</div>
                                                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -91,7 +92,7 @@ export function Navbar() {
                                             <NavigationMenuLink asChild>
                                                 <Link
                                                     href="/products/journals/subscription"
-                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#7A5C2E]/10 focus:bg-[#7A5C2E]/10"
+                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-primary/10 focus:bg-primary/10"
                                                 >
                                                     <div className="text-sm font-medium leading-none">Subscription</div>
                                                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -104,7 +105,7 @@ export function Navbar() {
                                             <NavigationMenuLink asChild>
                                                 <Link
                                                     href="/products/conferences"
-                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#7A5C2E]/10 focus:bg-[#7A5C2E]/10"
+                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-primary/10 focus:bg-primary/10"
                                                 >
                                                     <div className="text-sm font-medium leading-none">Conferences</div>
                                                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -117,7 +118,7 @@ export function Navbar() {
                                             <NavigationMenuLink asChild>
                                                 <Link
                                                     href="/products/workshops"
-                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#7A5C2E]/10 focus:bg-[#7A5C2E]/10"
+                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-primary/10 focus:bg-primary/10"
                                                 >
                                                     <div className="text-sm font-medium leading-none">Workshops</div>
                                                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">

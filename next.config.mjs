@@ -11,8 +11,27 @@ const nextConfig = {
                 pathname: '/**',
             },
             {
-                protocol: 'https',
                 hostname: 'lawjournals.celnet.in',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                hostname: 'cle.celnet.in',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                hostname: 'cle-platform.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                hostname: 'storage.googleapis.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                hostname: 'images.unsplash.com',
                 port: '',
                 pathname: '/**',
             },
@@ -21,7 +40,7 @@ const nextConfig = {
     async headers() {
         return [
             {
-                source: '/(.*)',
+                source: '/:path*',
                 headers: [
                     {
                         key: 'X-DNS-Prefetch-Control',

@@ -20,30 +20,47 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://cle-platform.com"),
   title: {
     default: "Centre of Legal Excellence (CLE)",
-    template: "%s | CLE",
+    template: "%s | Centre of Legal Excellence",
   },
-  description: "Premier legal knowledge platform offering workshops, journals, and professional development for law students and professionals.",
-  keywords: ["Law", "Legal Education", "Workshops", "Journals", "Legal Research", "Mentorship"],
+  description: "CLE is a premier legal knowledge platform offering expert-led workshops, high-impact law journals, and professional mentorship for law students and professionals globally.",
+  keywords: ["Law", "Legal Education", "Workshops", "Journals", "Legal Research", "Mentorship", "Legal Excellence", "Law Students"],
   authors: [{ name: "CLE Team" }],
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://cle-platform.com", // Replace with actual domain
+    url: "/",
     title: "Centre of Legal Excellence (CLE)",
     description: "Premier legal knowledge platform offering workshops, journals, and professional development.",
     siteName: "Centre of Legal Excellence",
+    images: [
+      {
+        url: "/og-image.jpg", // Make sure this exists or will be added
+        width: 1200,
+        height: 630,
+        alt: "Centre of Legal Excellence",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Centre of Legal Excellence (CLE)",
     description: "Premier legal knowledge platform offering workshops, journals, and professional development.",
-    creator: "@CLE_Platform", // Replace with actual handle
+    creator: "@CLE_Platform",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -60,9 +77,8 @@ export default function RootLayout({
         <CurrencyProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="light"
-            forcedTheme="light"
-            enableSystem={false}
+            defaultTheme="system"
+            enableSystem
             disableTransitionOnChange
           >
             {children}

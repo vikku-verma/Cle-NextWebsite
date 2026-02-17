@@ -2,7 +2,7 @@
 @plugin "tailwindcss-animate";
 @source "../../src";
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -38,7 +38,7 @@
   --radius-lg: var(--radius);
 
   /* Spacing System */
-  --spacing-container: 80rem; /* max-w-7xl */
+  --spacing-container: 80rem;
   --spacing-section-desktop: 80px;
   --spacing-section-tablet: 60px;
   --spacing-section-mobile: 40px;

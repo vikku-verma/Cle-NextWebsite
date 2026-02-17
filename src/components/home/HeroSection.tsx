@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export function HeroSection() {
     return (
-        <section className="relative overflow-hidden bg-gradient-to-b from-background to-muted/30 pt-16 pb-24 lg:pt-32 lg:pb-40">
+        <section className="relative overflow-hidden bg-gradient-to-b from-background to-muted/20 pt-16 pb-20 lg:pt-24 lg:pb-32">
             {/* Abstract Background Elements */}
             <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-secondary/5 blur-3xl" />
             <div className="absolute bottom-0 left-0 -z-10 h-[400px] w-[400px] rounded-full bg-accent/5 blur-3xl" />

@@ -60,4 +60,3 @@ export const MentorshipSchema = z.object({
 
 export type Product = z.infer<typeof ProductSchema>;
 export type CLEEvent = z.infer<typeof EventSchema>;
-export type Mentor = z.infer<typeof MentorshipSchema>;

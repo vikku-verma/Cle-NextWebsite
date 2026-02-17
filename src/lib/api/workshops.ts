@@ -1,6 +1,7 @@
 import { Workshop, WordPressFormEntry } from "@/lib/types";
+import { cache } from "react";
 
-export async function fetchWorkshops(): Promise<Workshop[]> {
+export const fetchWorkshops = cache(async (): Promise<Workshop[]> => {
     const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
     const username = process.env.WP_USER!;
     const appPassword = process.env.WP_APP_PASSWORD!;
@@ -16,8 +17,8 @@ export async function fetchWorkshops(): Promise<Workshop[]> {
 
         const res = await fetch(API_URL, {
             next: {
-                // Set to 0 to ensure fresh data on every request ( Real-time )
-                revalidate: 0,
+                // Remove revalidate: 0 to allow efficient caching
+                // We rely on tags for on-demand revalidation if needed
                 tags: ['workshops']
             },
             headers: {
@@ -143,7 +144,7 @@ export async function fetchWorkshops(): Promise<Workshop[]> {
         console.error("Error fetching workshops:", error);
         return [];
     }
-}
+});
 export async function fetchWorkshopById(id: string): Promise<Workshop | null> {
     const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
     const username = process.env.WP_USER!;

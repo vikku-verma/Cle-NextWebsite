@@ -1,6 +1,6 @@
 "use client";
 
-import { WorkshopCategory } from "@/lib/law-journals";
+import { WorkshopCategory } from "@/lib/types";
 import { ArrowRight, BookOpen, Calendar, Star, User } from "lucide-react";
 import Link from "next/link";
 

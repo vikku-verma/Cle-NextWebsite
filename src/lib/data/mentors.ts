@@ -26,7 +26,8 @@ export const MOCK_MENTORS: Mentor[] = [
         keywords: ["Corporate", "M&A", "Senior", "Expert"],
         preferredFeed: "Academic Journals",
         empName: "Vikram Sethi",
-        slug: "vikram-sethi"
+        slug: "vikram-sethi",
+        designation: "Senior Academic Advisor"
     },
     {
         id: "2",
@@ -52,7 +53,8 @@ export const MOCK_MENTORS: Mentor[] = [
         keywords: ["Litigation", "Human Rights", "High Court"],
         preferredFeed: "Legal Blogs",
         empName: "Meera Jha",
-        slug: "meera-jha"
+        slug: "meera-jha",
+        designation: "Lead Trainer"
     },
     {
         id: "3",
@@ -78,7 +80,8 @@ export const MOCK_MENTORS: Mentor[] = [
         keywords: ["IPR", "Tech", "Patents"],
         preferredFeed: "Tech-Legal Weekly",
         empName: "Rajesh Kumar",
-        slug: "rajesh-kumar"
+        slug: "rajesh-kumar",
+        designation: "Academic Advisor"
     },
     {
         id: "4",
@@ -104,6 +107,7 @@ export const MOCK_MENTORS: Mentor[] = [
         keywords: ["Forensics", "Criminal", "Justice"],
         preferredFeed: "Forensic Gazette",
         empName: "Ananya Sharma",
-        slug: "ananya-sharma"
+        slug: "ananya-sharma",
+        designation: "Domain Expert"
     }
 ];

@@ -68,6 +68,13 @@ export interface WorkshopCategory {
     image: string;
     slug: string;
     isNew?: boolean;
+    issues?: number;
+    abbreviation?: string;
+    domain?: string;
+    eIssn?: string;
+    since?: string;
+    indexing?: string;
+    plumx?: boolean;
 }
 
 export interface Mentor {
@@ -97,3 +104,40 @@ export interface Mentor {
     slug: string;
     designation: string;
 }
+
+export type Product = {
+    id?: string;
+    product_id: string;
+    product_name: string;
+    product_manager_name: string;
+    product_manager_email: string;
+    start_date: string;
+    end_date: string;
+    price_in_inr: number;
+    price_in_usd: number;
+    product_category: "Journal" | "Workshop" | "Training Program" | "Conference" | "Mentorship" | "Subscription";
+    product_image: string;
+    about_product: string;
+    keywords?: string[];
+};
+
+export type CLEEvent = {
+    id?: string;
+    title: string;
+    description: string;
+    date: string;
+    location: string;
+    ticket_price: number;
+    capacity: number;
+    banner_image?: string;
+    theme?: string;
+    speakers?: {
+        name: string;
+        role: string;
+        image?: string;
+    }[];
+    agenda?: {
+        time: string;
+        session: string;
+    }[];
+};

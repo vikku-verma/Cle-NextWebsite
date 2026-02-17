@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CalendarDays, User } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import NextImage from "next/image";
 
 const posts = [
     {
@@ -69,12 +70,14 @@ export default function BlogPage() {
                             className="group flex flex-col overflow-hidden rounded-2xl border bg-card transition-shadow hover:shadow-lg"
                         >
                             <div className="relative aspect-video overflow-hidden">
-                                <img
+                                <NextImage
                                     src={post.image}
                                     alt={post.title}
-                                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
-                                <div className="absolute top-4 left-4 rounded-md bg-background/90 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
+                                <div className="absolute top-4 left-4 rounded-md bg-background/90 px-3 py-1 text-xs font-semibold backdrop-blur-sm shadow-sm">
                                     {post.category}
                                 </div>
                             </div>

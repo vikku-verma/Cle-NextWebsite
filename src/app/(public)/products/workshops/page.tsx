@@ -1,15 +1,14 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { ChevronRight, BookOpen } from "lucide-react";
-import { fetchWorkshops } from "@/lib/api/workshops";
 import WorkshopList from "./WorkshopList";
-
+import { useWorkshops } from "@/components/workshops/WorkshopsProvider";
 import { LAW_JOURNALS } from "@/lib/law-journals";
 
-export const dynamic = "force-dynamic";
-
-export default async function ExploreWorkshopsPage() {
-  const allWorkshops = await fetchWorkshops();
+export default function ExploreWorkshopsPage() {
+  const { workshops: allWorkshops } = useWorkshops();
 
   // Create a Set of valid journal slugs for efficient lookup
   const validJournalSlugs = new Set(LAW_JOURNALS.map(j => j.slug.toLowerCase()));
@@ -51,8 +50,6 @@ export default async function ExploreWorkshopsPage() {
                 Select a workshop category below to view dedicated legal workshops, practical sessions, and expert-led training programs tailored to your field of interest.
               </p>
             </div>
-
-            {/* View Mode Toggle is now inside WorkshopList */}
           </div>
         </div>
       </section>

@@ -10,12 +10,15 @@ export function Footer() {
                 <div className="grid gap-8 lg:grid-cols-4">
 
                     {/* Brand Column */}
-                    <div className="space-y-4">
-                        <Link href="/" className="flex items-center space-x-2">
-                            <span className="font-heading text-xl font-bold text-primary">CLE</span>
+                    <div className="space-y-6">
+                        <Link href="/" className="flex items-center space-x-3">
+                            <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-black font-serif">
+                                C
+                            </div>
+                            <span className="font-heading text-xl font-black tracking-tighter text-foreground">CLE</span>
                         </Link>
-                        <p className="max-w-xs text-muted-foreground">
-                            Advancing legal scholarship and professional development through excellence in publishing and education.
+                        <p className="max-w-xs text-muted-foreground leading-relaxed">
+                            Advancing legal scholarship and professional development through excellence in research, publishing, and industry-leading education.
                         </p>
                         <div className="flex space-x-4">
                             <Link href="#" className="text-muted-foreground hover:text-primary">

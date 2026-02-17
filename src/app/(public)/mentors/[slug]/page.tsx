@@ -1,15 +1,41 @@
-"use client";
-
 import React from "react";
-import { useMentors } from "@/components/mentors/MentorsProvider";
+import { fetchMentors } from "@/lib/api/mentors";
 import { MentorProfile } from "@/components/mentors/MentorProfile";
 import { Search } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-export default function MentorProfilePage() {
-    const { slug } = useParams() as { slug: string };
-    const { mentors } = useMentors();
+interface PageProps {
+    params: {
+        slug: string;
+    };
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const mentors = await fetchMentors();
+    const mentor = mentors.find(m => String(m.slug) === params.slug);
+
+    if (!mentor) {
+        return {
+            title: "Mentor Not Found",
+        };
+    }
+
+    return {
+        title: `${mentor.name} | Mentor`,
+        description: mentor.bio || `Specialized in ${mentor.subject}. Explore the profile of ${mentor.name} at Centre of Legal Excellence.`,
+        openGraph: {
+            title: mentor.name,
+            description: mentor.bio,
+            images: mentor.profilePic ? [mentor.profilePic] : [],
+        },
+    };
+}
+
+export default async function MentorProfilePage({ params }: PageProps) {
+    const { slug } = params;
+    const mentors = await fetchMentors();
     const mentor = mentors.find(m => String(m.slug) === slug);
 
     if (!mentor) {
