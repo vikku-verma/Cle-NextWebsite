@@ -2,7 +2,6 @@
 
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { CurrencySwitcher } from "./CurrencySwitcher";
 
 export function TopBar() {
     return (
@@ -21,10 +20,6 @@ export function TopBar() {
                     Register Here
                     <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                 </Link>
-
-                <div className="ml-4 pl-4 border-l border-white/20">
-                    <CurrencySwitcher />
-                </div>
             </div>
         </div>
     );

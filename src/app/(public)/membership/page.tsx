@@ -3,7 +3,6 @@
 import { Check, Star, Shield, Zap, BookOpen, Briefcase, Building2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { PriceDisplay } from "@/components/shared/PriceDisplay";
 
 const plans = [
     {
@@ -97,7 +96,7 @@ export default function MembershipPage() {
 
                             <div className="flex items-baseline mb-8 bg-slate-50 p-4 rounded-xl border border-slate-200/50 shadow-inner">
                                 <span className="text-4xl font-black tracking-tight text-slate-900">
-                                    <PriceDisplay amount={plan.price as number | "Custom"} />
+                                    {plan.price === "Custom" ? "Custom" : `$${plan.price}`}
                                 </span>
                                 <span className="text-slate-500 ml-2 font-bold text-sm uppercase tracking-wider">{plan.period}</span>
                             </div>

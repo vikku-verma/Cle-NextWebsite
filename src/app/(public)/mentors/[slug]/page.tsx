@@ -1,11 +1,8 @@
-import React from "react";
 import { fetchMentors } from "@/lib/api/mentors";
 import { MentorProfile } from "@/components/mentors/MentorProfile";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
-
 interface PageProps {
     params: {
         slug: string;

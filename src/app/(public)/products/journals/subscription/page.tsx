@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Check, Shield } from "lucide-react";
 import Link from "next/link";
-import { PriceDisplay } from "@/components/shared/PriceDisplay";
 
 const plans = [
     {
@@ -77,7 +76,7 @@ export default function SubscriptionPage() {
                                 ) : (
                                     <>
                                         <span className="text-4xl font-bold">
-                                            <PriceDisplay amount={plan.price as number} />
+                                            ${plan.price}
                                         </span>
                                         <span className="text-muted-foreground">{plan.period}</span>
                                     </>

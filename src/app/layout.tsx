@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
-import { CurrencyProvider } from "@/context/CurrencyContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -74,16 +73,14 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${plusJakarta.variable} ${playfair.variable} antialiased bg-background text-foreground font-sans`}
       >
-        <CurrencyProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </CurrencyProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

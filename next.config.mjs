@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+// trigger restart
 const nextConfig = {
     reactStrictMode: true,
     poweredByHeader: false,
