@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, BookOpen, GraduationCap, Users } from "lucide-react";
+import { Menu, X, BookOpen, GraduationCap, Users, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
     NavigationMenu,
@@ -14,9 +14,11 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { useWishlist } from "@/context/WishlistContext";
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const { items } = useWishlist();
 
     return (
         <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -151,6 +153,15 @@ export function Navbar() {
 
                 {/* Desktop CTA */}
                 <div className="hidden items-center space-x-4 lg:flex">
+                    <Button variant="ghost" size="icon" asChild className="relative" title="Wishlist">
+                        <Link href="/wishlist">
+                            <Heart className="h-5 w-5" />
+                            {items.length > 0 && (
+                                <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white" />
+                            )}
+                            <span className="sr-only">Wishlist</span>
+                        </Link>
+                    </Button>
                     <Button variant="ghost" asChild className="hidden xl:flex">
                         <Link href="/login">Log in</Link>
                     </Button>
@@ -203,6 +214,14 @@ export function Navbar() {
 
                         <Link href="/blog" onClick={() => setIsOpen(false)} className="text-sm font-medium hover:text-primary">
                             Blog
+                        </Link>
+                        <Link href="/wishlist" onClick={() => setIsOpen(false)} className="flex items-center text-sm font-medium hover:text-primary">
+                            Wishlist
+                            {items.length > 0 && (
+                                <span className="ml-2 inline-flex items-center justify-center rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800">
+                                    {items.length}
+                                </span>
+                            )}
                         </Link>
                         <Link href="/contact" onClick={() => setIsOpen(false)} className="text-sm font-medium hover:text-primary">
                             Contact Us

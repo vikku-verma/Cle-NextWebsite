@@ -7,10 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { redirect } from "next/navigation";
 
-// Utility to debounce search or handle complex state can be added client-side, 
-// for now using simple server component with searchParams.
-
-export const revalidate = 60; // Revalidate every minute
+export const revalidate = 60;
 
 export default async function BlogPage({
     searchParams,
@@ -178,6 +175,7 @@ export default async function BlogPage({
                                 variant={p === page ? "default" : "outline"}
                                 size="sm"
                                 asChild
+                                className=""
                             >
                                 <Link
                                     href={{
