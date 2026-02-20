@@ -22,6 +22,8 @@ export interface SubscriptionProduct {
     type: string;
     attributes: SubscriptionAttribute[];
     variations: number[];
+    min_price?: string;
+    max_price?: string;
 }
 
 export const fetchSubscriptions = async (): Promise<SubscriptionProduct[]> => {
