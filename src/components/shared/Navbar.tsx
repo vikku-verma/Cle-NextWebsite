@@ -106,7 +106,7 @@ export function Navbar() {
                                         <li>
                                             <NavigationMenuLink asChild>
                                                 <Link
-                                                    href="https://cle.celnet.in/conference/international-legal-conference-2026/"
+                                                    href="/conference/international-legal-conference-2026"
                                                     className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-primary/10 focus:bg-primary/10"
                                                     target="_blank"
                                                 >

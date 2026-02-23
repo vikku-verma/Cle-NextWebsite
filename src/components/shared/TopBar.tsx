@@ -14,7 +14,7 @@ export function TopBar() {
                     Get 10% OFF with code <span className="font-bold text-accent">ILAC26</span>. Valid until 28th Feb 2026.
                 </span>
                 <Link
-                    href="https://cle.celnet.in/conference/registration-fee/"
+                    href="/conference/international-legal-conference-2026/registration"
                     className="group inline-flex items-center font-bold text-accent hover:underline ml-2"
                 >
                     Register Here

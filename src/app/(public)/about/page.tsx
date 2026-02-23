@@ -289,7 +289,7 @@ export default function AboutPage() {
                                 <Button size="lg" className="bg-white text-[#8A5A2B] hover:bg-[#F4F2EE] font-bold" asChild>
                                     <Link href="/join">Explore Membership Categories</Link>
                                 </Button>
-                                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-bold" asChild>
+                                <Button size="lg" variant="outline" className="border-white text-[#8A5A2B] hover:bg-white/10 font-bold" asChild>
                                     <Link href="/contact">Contact Our Team</Link>
                                 </Button>
                             </div>

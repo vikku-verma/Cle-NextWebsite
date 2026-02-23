@@ -1,7 +1,7 @@
 "use client";
 
-import { ContactForm } from "@/components/shared/ContactForm";
-import { Mail, MapPin, Phone, HelpCircle, ArrowRight } from "lucide-react";
+import { WordPressForm } from "@/components/shared/WordPressForm";
+import { Mail, MapPin, Phone, HelpCircle, ArrowRight, Users } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -43,31 +43,51 @@ export default function ContactPage() {
                     <div className="space-y-12">
                         <div>
                             <h2 className="font-heading text-2xl font-bold mb-6">Get in Touch</h2>
-                            <div className="space-y-6">
+                            <p className="text-muted-foreground mb-8">
+                                In case of any queries related to Law Journals, Law Books, CLE Training Programs & Membership
+                            </p>
+                            <div className="space-y-8">
+                                <div className="flex items-start gap-4">
+                                    <Users className="h-6 w-6 text-primary mt-1" />
+                                    <div>
+                                        <div className="font-semibold text-lg text-foreground">Kindly Contact</div>
+                                        <div className="text-foreground font-medium mt-1">Ankita Srivastava</div>
+                                        <div className="text-muted-foreground text-sm">Journal Manager | Centre for Legal Excellence</div>
+                                    </div>
+                                </div>
                                 <div className="flex items-start gap-4">
                                     <MapPin className="h-6 w-6 text-primary mt-1" />
                                     <div>
-                                        <h3 className="font-semibold">Headquarters</h3>
-                                        <p className="text-muted-foreground mt-1">
-                                            Consortium of e-Learning Network<br />
+                                        <div className="font-semibold">Address</div>
+                                        <div className="text-muted-foreground mt-1 text-sm leading-relaxed">
+                                            (Centre For Legal Excellence) CLE is a division of Consortium e-Learning Network Private Ltd.<br />
                                             A-118, 1st Floor, Sector-63,<br />
-                                            Noida, Uttar Pradesh, India - 201301
-                                        </p>
+                                            Noida - 201301, Uttar Pradesh, India
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
                                     <Mail className="h-6 w-6 text-primary mt-1" />
                                     <div>
-                                        <h3 className="font-semibold">Email</h3>
-                                        <p className="text-muted-foreground mt-1">info@cle-platform.com</p>
-                                        <p className="text-muted-foreground">support@cle-platform.com</p>
+                                        <div className="font-semibold">Email</div>
+                                        <div className="text-muted-foreground mt-1">lawjournals@celnet.in</div>
+                                        <div className="text-muted-foreground">cle@celnet.in</div>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
                                     <Phone className="h-6 w-6 text-primary mt-1" />
                                     <div>
-                                        <h3 className="font-semibold">Phone</h3>
-                                        <p className="text-muted-foreground mt-1 text-lg">+91-120-4781-200</p>
+                                        <div className="font-semibold">Phone</div>
+                                        <div className="text-muted-foreground mt-1 text-lg font-medium">(+91) 0120-4781207</div>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <HelpCircle className="h-6 w-6 text-primary mt-1" />
+                                    <div>
+                                        <div className="font-semibold">Website</div>
+                                        <Link href="http://cle.celnet.in" target="_blank" className="text-primary hover:underline mt-1 block font-medium">
+                                            cle.celnet.in
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -96,9 +116,9 @@ export default function ContactPage() {
                     </div>
 
                     {/* Contact Form */}
-                    <div className="rounded-2xl border bg-card p-8 shadow-sm h-fit">
+                    <div className="rounded-2xl border bg-card p-8 shadow-sm h-fit min-h-[500px]">
                         <h2 className="font-heading text-2xl font-bold mb-6">Send us a Message</h2>
-                        <ContactForm />
+                        <WordPressForm />
                     </div>
                 </div>
             </section>

@@ -43,6 +43,7 @@ export function Footer() {
                             <li><Link href="/products/journals" className="hover:text-primary">Journals</Link></li>
                             <li><Link href="/products/journals?filter=book" className="hover:text-primary">Books</Link></li>
                             <li><Link href="/products/workshops" className="hover:text-primary">Workshops</Link></li>
+                            <li><Link href="/conference/international-legal-conference-2026" className="hover:text-primary">Conference 2026</Link></li>
                             <li><Link href="/mentors" className="hover:text-primary">Mentorship</Link></li>
                         </ul>
                     </div>

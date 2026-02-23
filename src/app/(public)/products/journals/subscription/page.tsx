@@ -17,8 +17,10 @@ export default function SubscriptionPage() {
     const itemsPerPage = 8; // Adjust as needed for grid layout (e.g., 2 rows of 4)
 
     // Calculate pagination
-    // Note: slice(1) removes the first product as requested
-    const displayableProducts = products.slice(1);
+    // Note: If there are multiple products, we slice(1) as previously requested 
+    // (presumably to skip a specific item or handle a pinned item elsewhere)
+    // However, if there's only 1 product, we show it to avoid "No products" message.
+    const displayableProducts = products.length > 1 ? products.slice(1) : products;
     const totalPages = Math.ceil(displayableProducts.length / itemsPerPage);
 
     const currentProducts = displayableProducts.slice(

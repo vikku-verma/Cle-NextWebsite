@@ -73,8 +73,12 @@ export function EventList() {
                 </div>
             ))}
 
-            {events?.length === 0 && (
-                <p className="text-center text-muted-foreground py-12">No upcoming events scheduled.</p>
+            {(!events || events.length === 0) && (
+                <div className="flex flex-col items-center justify-center p-12 text-center rounded-2xl border border-dashed bg-muted/10">
+                    <CalendarDays className="h-10 w-10 text-muted-foreground mb-4 opacity-50" />
+                    <h3 className="text-lg font-bold text-foreground mb-1">No upcoming events</h3>
+                    <p className="text-muted-foreground text-sm">Check back later for new scheduled conferences and workshops.</p>
+                </div>
             )}
         </div>
     );

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
     try {
-        const apiUrl = process.env.SUBSCRIPTION_API_URL;
+        const apiUrl = process.env.SUBSCRIPTION_API_URL?.trim();
 
         if (!apiUrl) {
             return NextResponse.json(
@@ -17,22 +17,41 @@ export async function GET() {
 
         const response = await fetch(url.toString(), {
             headers: {
-                'Content-Type': 'application/json',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Accept': 'application/json, text/plain, */*',
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Cache-Control': 'no-cache',
+                'Pragma': 'no-cache',
+                'Referer': 'https://shop.stmjournals.com/',
             },
             next: { revalidate: 3600 } // Cache for 1 hour
         });
 
         if (!response.ok) {
             const errorText = await response.text();
+            console.error(`WooCommerce API Error (${response.status}):`, errorText.substring(0, 200));
+
             return NextResponse.json(
-                { error: `Failed to fetch from WooCommerce: ${response.status} ${response.statusText}`, details: errorText },
+                {
+                    error: `Secondary API access failed: ${response.status}`,
+                    message: response.status === 403 ? "Access blocked by provider security (Cloudflare). This may require IP whitelisting on the source server." : response.statusText,
+                    status: response.status
+                },
                 { status: response.status }
             );
         }
 
         const data = await response.json();
 
-        // Enhance data with min_price and max_price from meta_data
+        // Ensure data is an array before processing
+        if (!Array.isArray(data)) {
+            console.error("Expected array from WooCommerce API, received:", typeof data);
+            return NextResponse.json(
+                { error: 'Invalid response format from WooCommerce', details: data },
+                { status: 500 }
+            );
+        }
+
         // Enhance data with min_price and max_price from meta_data
         const enhancedData = data.map((product: any) => {
             const getMeta = (key: string) => product.meta_data?.find((m: any) => m.key === key)?.value;
