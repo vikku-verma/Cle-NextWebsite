@@ -6,12 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 export function ConferenceHero() {
-    const scrollToSection = (id: string) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-        }
-    };
+
 
     return (
         <section id="home" className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#0F1115] pt-32 pb-20">
@@ -65,30 +60,42 @@ export function ConferenceHero() {
                         className="flex flex-wrap items-center justify-center gap-4"
                     >
                         <Button
+                            asChild
                             size="lg"
-                            onClick={() => scrollToSection('registration')}
                             className="h-14 px-8 rounded-full bg-primary hover:bg-primary/90 text-white font-bold text-lg shadow-xl shadow-primary/20 transition-all hover:scale-105 font-sans"
                         >
-                            Register Now
+                            <Link href="/conference/international-legal-conference-2026/registration">Register Now</Link>
                         </Button>
                         <Button
+                            asChild
                             size="lg"
                             variant="outline"
-                            onClick={() => scrollToSection('themes')}
-                            className="h-14 px-8 rounded-full border-white/20 hover:bg-white/10 text-white font-bold text-lg backdrop-blur-sm transition-all hover:scale-105 font-sans"
+                            className="h-14 px-8 rounded-full border-white/50 hover:bg-white/20 text-white font-bold text-lg backdrop-blur-sm transition-all hover:scale-105 font-sans"
                         >
-                            Explore Themes <LayoutGrid className="ml-2 h-4 w-4" />
+                            <Link href="/conference/international-legal-conference-2026/themes">
+                                Explore Themes <LayoutGrid className="ml-2 h-4 w-4" />
+                            </Link>
                         </Button>
 
                         <div className="w-full md:w-auto flex justify-center gap-6 mt-4 md:mt-0">
-                            <button className="flex items-center text-slate-400 hover:text-white transition-colors font-sans font-semibold group py-2 text-sm">
+                            <a
+                                href="https://cle.celnet.in/wp-content/uploads/formidable/11/WhatsApp-Image-2025-12-15-at-11.36.18-PM-150x150.avif"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center text-slate-200 hover:text-white transition-colors font-sans font-bold group py-2 text-sm drop-shadow-sm"
+                            >
                                 <FileText className="mr-2 h-4 w-4 text-primary group-hover:scale-110 transition-transform" />
                                 See Poster
-                            </button>
-                            <button className="flex items-center text-slate-400 hover:text-white transition-colors font-sans font-semibold group py-2 text-sm">
+                            </a>
+                            <a
+                                href="https://cle.celnet.in/wp-content/uploads/formidable/11/Future-Frontiers-in-Law-Governance-Technology-and-Justice-2.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center text-slate-200 hover:text-white transition-colors font-sans font-bold group py-2 text-sm drop-shadow-sm"
+                            >
                                 <Download className="mr-2 h-4 w-4 text-secondary group-hover:scale-110 transition-transform" />
                                 Download Brochure
-                            </button>
+                            </a>
                         </div>
                     </motion.div>
                 </div>

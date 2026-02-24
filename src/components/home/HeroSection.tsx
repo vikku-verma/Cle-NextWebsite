@@ -41,7 +41,7 @@ export function HeroSection() {
                                     Explore Products
                                 </Link>
                             </Button>
-                            <Button size="lg" variant="outline" className="border-primary/20 hover:bg-muted min-w-[160px]" asChild>
+                            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 min-w-[160px]" asChild>
                                 <Link href="/membership">
                                     Join Membership
                                 </Link>

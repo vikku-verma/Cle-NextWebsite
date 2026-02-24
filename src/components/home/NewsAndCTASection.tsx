@@ -1,29 +1,7 @@
-"use client";
-
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-
-const articles = [
-    {
-        category: "Uncategorised",
-        title: "An Overview of Health Laws in India",
-        date: "Jan 28, 2026",
-        href: "/blog/health-laws-india",
-    },
-    {
-        category: "Uncategorised",
-        title: "Real Estate Law: Navigating Property Transactions",
-        date: "Jan 25, 2026",
-        href: "/blog/real-estate-law",
-    },
-    {
-        category: "Uncategorised",
-        title: "Labour and Industrial Law: Protecting Workers’ Rights",
-        date: "Jan 20, 2026",
-        href: "/blog/labour-law-rights",
-    },
-];
+import { fetchBlogs, fetchCategories } from "@/lib/api/blog";
 
 const stats = [
     { label: "Editors & Reviewers", value: "300+" },
@@ -32,7 +10,13 @@ const stats = [
     { label: "Global Members", value: "5k+" },
 ];
 
-export function NewsAndCTASection() {
+export async function NewsAndCTASection() {
+    const categories = await fetchCategories();
+    const uncategorisedCategory = categories.find(c => c.slug.toLowerCase() === 'uncategorized' || c.name.toLowerCase() === 'uncategorised');
+    const categoryId = uncategorisedCategory ? uncategorisedCategory.id : undefined;
+
+    const { posts } = await fetchBlogs({ category: categoryId, per_page: 3 });
+
     return (
         <>
             <section className="bg-background py-16 sm:py-24">
@@ -52,29 +36,36 @@ export function NewsAndCTASection() {
                     </div>
 
                     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                        {articles.map((article) => (
-                            <Link
-                                key={article.title}
-                                href={article.href}
-                                className="group flex flex-col justify-between rounded-2xl border bg-card p-6 shadow-sm transition-colors hover:border-primary/50"
-                            >
-                                <div>
-                                    <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                                        {article.category}
+                        {posts.length > 0 ? posts.map((post) => {
+                            const categoryTerm = post._embedded?.['wp:term']?.[0]?.[0];
+                            const categoryName = categoryTerm ? categoryTerm.name : "Uncategorised";
+
+                            return (
+                                <Link
+                                    key={post.id}
+                                    href={`/blog/${post.slug}`}
+                                    className="group flex flex-col justify-between rounded-2xl border bg-card p-6 shadow-sm transition-colors hover:border-primary/50"
+                                >
+                                    <div>
+                                        <div className="mb-2 text-xs font-extrabold uppercase tracking-wider text-primary">
+                                            {categoryName}
+                                        </div>
+                                        <h3 className="font-heading text-xl font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                                        <div className="mt-2 text-sm text-muted-foreground">
+                                            {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                                        </div>
                                     </div>
-                                    <h3 className="font-heading text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                                        {article.title}
-                                    </h3>
-                                    <div className="mt-2 text-sm text-muted-foreground">
-                                        {article.date}
+                                    <div className="mt-4 flex items-center text-sm font-medium text-primary">
+                                        Read Article
+                                        <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                                     </div>
-                                </div>
-                                <div className="mt-4 flex items-center text-sm font-medium text-primary">
-                                    Read Article
-                                    <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                                </div>
-                            </Link>
-                        ))}
+                                </Link>
+                            );
+                        }) : (
+                            <div className="col-span-full h-32 flex items-center justify-center border-2 border-dashed rounded-2xl">
+                                <span className="text-muted-foreground">No recent news available.</span>
+                            </div>
+                        )}
                     </div>
 
                     <div className="mt-8 text-center sm:hidden">

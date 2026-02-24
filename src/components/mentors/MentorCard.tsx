@@ -26,8 +26,8 @@ export function MentorCard({ mentor }: MentorCardProps) {
                 <div className={cn(
                     "absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm border",
                     isActive
-                        ? "bg-emerald-50 text-emerald-700 border-emerald-100"
-                        : "bg-amber-50 text-amber-700 border-amber-100"
+                        ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20"
+                        : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
                 )}>
                     {isActive ? (
                         <ShieldCheck className="w-3 h-3" />
@@ -51,7 +51,7 @@ export function MentorCard({ mentor }: MentorCardProps) {
                                 onError={() => setImgError(true)}
                             />
                         ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground">
+                            <div className="w-full h-full flex items-center justify-center bg-primary/10 text-primary">
                                 <User className="w-10 h-10" />
                             </div>
                         )}

@@ -40,11 +40,11 @@ export function Footer() {
                     <div className="space-y-4">
                         <h3 className="font-heading text-lg font-semibold text-foreground">Platform</h3>
                         <ul className="space-y-2 text-muted-foreground">
-                            <li><Link href="/products/journals" className="hover:text-primary">Journals</Link></li>
-                            <li><Link href="/products/journals?filter=book" className="hover:text-primary">Books</Link></li>
-                            <li><Link href="/products/workshops" className="hover:text-primary">Workshops</Link></li>
-                            <li><Link href="/conference/international-legal-conference-2026" className="hover:text-primary">Conference 2026</Link></li>
-                            <li><Link href="/mentors" className="hover:text-primary">Mentorship</Link></li>
+                            <li><Link href="/products/journals" className="hover:text-foreground hover:underline transition-colors">Journals</Link></li>
+                            <li><Link href="/products/journals?filter=book" className="hover:text-foreground hover:underline transition-colors">Books</Link></li>
+                            <li><Link href="/products/workshops" className="hover:text-foreground hover:underline transition-colors">Workshops</Link></li>
+                            <li><Link href="/conference/international-legal-conference-2026" className="hover:text-foreground hover:underline transition-colors">Conference 2026</Link></li>
+                            <li><Link href="/mentors" className="hover:text-foreground hover:underline transition-colors">Mentorship</Link></li>
                         </ul>
                     </div>
 
@@ -52,11 +52,11 @@ export function Footer() {
                     <div className="space-y-4">
                         <h3 className="font-heading text-lg font-semibold text-foreground">Resources</h3>
                         <ul className="space-y-2 text-muted-foreground">
-                            <li><Link href="/about" className="hover:text-primary">About Us</Link></li>
-                            <li><Link href="/contact" className="hover:text-primary">Contact</Link></li>
-                            <li><Link href="https://manuscript-engine.journalslibrary.com/conferences/entry/31140/" className="hover:text-primary">Submit Paper</Link></li>
-                            <li><Link href="/privacy" className="hover:text-primary">Privacy Policy</Link></li>
-                            <li><Link href="/terms" className="hover:text-primary">Terms of Service</Link></li>
+                            <li><Link href="/about" className="hover:text-foreground hover:underline transition-colors">About Us</Link></li>
+                            <li><Link href="/contact" className="hover:text-foreground hover:underline transition-colors">Contact</Link></li>
+                            <li><Link href="https://manuscript-engine.journalslibrary.com/conferences/entry/31140/" className="hover:text-foreground hover:underline transition-colors">Submit Paper</Link></li>
+                            <li><Link href="/privacy" className="hover:text-foreground hover:underline transition-colors">Privacy Policy</Link></li>
+                            <li><Link href="/terms" className="hover:text-foreground hover:underline transition-colors">Terms of Service</Link></li>
                         </ul>
                     </div>
 

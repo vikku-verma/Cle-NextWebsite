@@ -55,7 +55,7 @@ export function AboutSection() {
                 </div>
 
                 <div className="mt-12 text-center">
-                    <Button variant="outline" asChild>
+                    <Button asChild>
                         <Link href="/about" className="inline-flex items-center">
                             Learn more about our mission
                             <ArrowRight className="ml-2 h-4 w-4" />

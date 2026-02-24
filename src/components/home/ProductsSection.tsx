@@ -65,12 +65,12 @@ export function ProductsSection() {
                     </Button>
                 </div>
 
-                <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
                     {products.map((product) => (
                         <Link
                             key={product.title}
                             href={product.href}
-                            className="group relative flex flex-col rounded-2xl border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-1"
+                            className={`group relative flex flex-col rounded-2xl border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-1 ${product.title === 'Journals' ? 'sm:col-span-2 lg:col-span-1 xl:col-span-1 xl:col-start-auto lg:col-start-2 sm:col-start-1' : ''}`}
                         >
                             <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-secondary/10 text-secondary group-hover:bg-secondary group-hover:text-secondary-foreground transition-colors">
                                 <product.icon className="h-5 w-5" />

@@ -41,15 +41,9 @@ export function SubmitPaperCTA() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <Link href="/conference/international-legal-conference-2026/registration">
+                            <Link href="/conference/international-legal-conference-2026/#">
                                 <button className="h-14 px-8 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold text-base shadow-xl shadow-primary/20 transition-all hover:scale-105 font-sans w-full sm:w-auto">
                                     Submit Abstract Now
-                                </button>
-                            </Link>
-                            <Link href="/conference/international-legal-conference-2026/call-for-papers">
-                                <button className="h-14 px-8 rounded-xl bg-white/5 border border-white/20 hover:bg-white/10 text-white font-bold text-base transition-all font-sans flex items-center justify-center gap-2 w-full sm:w-auto">
-                                    <FileText className="h-5 w-5 opacity-70" />
-                                    Submission Guidelines
                                 </button>
                             </Link>
                         </div>

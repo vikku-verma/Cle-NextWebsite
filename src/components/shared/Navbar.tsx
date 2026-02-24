@@ -60,7 +60,7 @@ export function Navbar() {
                             <NavigationMenuItem>
                                 <NavigationMenuTrigger>Products</NavigationMenuTrigger>
                                 <NavigationMenuContent>
-                                    <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                                    <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-popover text-popover-foreground rounded-xl shadow-xl">
                                         <li className="row-span-3">
                                             <NavigationMenuLink asChild>
                                                 <a
@@ -81,7 +81,7 @@ export function Navbar() {
                                             <NavigationMenuLink asChild>
                                                 <Link
                                                     href="/products/journals/publication"
-                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-primary/10 focus:bg-primary/10"
+                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted"
                                                 >
                                                     <div className="text-sm font-medium leading-none">Publication</div>
                                                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -94,7 +94,7 @@ export function Navbar() {
                                             <NavigationMenuLink asChild>
                                                 <Link
                                                     href="/products/journals/subscription"
-                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-primary/10 focus:bg-primary/10"
+                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted"
                                                 >
                                                     <div className="text-sm font-medium leading-none">Subscription</div>
                                                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -107,7 +107,7 @@ export function Navbar() {
                                             <NavigationMenuLink asChild>
                                                 <Link
                                                     href="/conference/international-legal-conference-2026"
-                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-primary/10 focus:bg-primary/10"
+                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted"
                                                     target="_blank"
                                                 >
                                                     <div className="text-sm font-medium leading-none">Conferences</div>
@@ -121,7 +121,7 @@ export function Navbar() {
                                             <NavigationMenuLink asChild>
                                                 <Link
                                                     href="/products/workshops"
-                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-primary/10 focus:bg-primary/10"
+                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted"
                                                 >
                                                     <div className="text-sm font-medium leading-none">Workshops</div>
                                                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -166,7 +166,7 @@ export function Navbar() {
                     <Button variant="ghost" asChild className="hidden xl:flex">
                         <Link href="/login">Log in</Link>
                     </Button>
-                    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6" asChild>
+                    <Button className="hidden bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6" asChild>
                         <Link href="/membership">Join Membership</Link>
                     </Button>
                 </div>

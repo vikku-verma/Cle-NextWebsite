@@ -14,17 +14,17 @@ export function SpeakersHero() {
             </div>
 
             <div className="container relative z-10 px-4 md:px-6">
-                <div className="max-w-4xl mx-auto text-center">
-                    <ConferenceBreadcrumb pageName="Speakers & Schedule" />
+                <div className="flex flex-col items-center max-w-5xl mx-auto text-center">
+                    <ConferenceBreadcrumb pageName="Speaker Panel" />
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md mb-8"
+                        className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md mb-8"
                     >
                         <UsersRound className="h-4 w-4 text-primary" />
-                        <span className="text-xs uppercase tracking-[0.2em] font-bold text-white/90 font-sans">
-                            Global Legal Minds
+                        <span className="text-xs uppercase tracking-[0.15em] font-bold text-white/90 font-sans">
+                            Future Frontiers in Law Governance, Technology, and Justice
                         </span>
                     </motion.div>
 
@@ -34,8 +34,8 @@ export function SpeakersHero() {
                         transition={{ duration: 0.7, delay: 0.1 }}
                         className="font-heading text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight"
                     >
-                        Speakers <span className="font-sans text-3xl md:text-4xl text-white/50">&amp;</span> <br />
-                        <span className="italic font-normal text-primary">Conference Schedule</span>
+                        Distinguished <br className="hidden md:block" />
+                        <span className="italic font-normal text-primary">Speaker Panel</span>
                     </motion.h1>
 
                     <motion.p
@@ -44,7 +44,7 @@ export function SpeakersHero() {
                         transition={{ duration: 0.7, delay: 0.2 }}
                         className="text-white/80 text-lg md:text-xl font-sans max-w-2xl mx-auto mb-10 leading-relaxed"
                     >
-                        Discover the thought leaders driving the global legal dialogue and plan your itinerary for the three-day International Legal Conference 2026.
+                        Discover the thought leaders driving the global legal dialogue and shaping the future of governance and justice.
                     </motion.p>
                 </div>
             </div>
