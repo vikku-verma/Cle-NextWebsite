@@ -1,5 +1,3 @@
-"use client";
-
 import { Check, Star, Shield, Zap, BookOpen, Briefcase, Building2, User, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -11,7 +9,7 @@ const stats = [
     { label: "Global Members", value: "5k+" },
 ];
 
-async function MembershipPageContent({ posts }: { posts: any[] }) {
+function MembershipPageContent({ posts }: { posts: any[] }) {
     // Helper to get an icon based on title
     const getIconForTitle = (title: string, index: number) => {
         const lowerTitle = title.toLowerCase();
