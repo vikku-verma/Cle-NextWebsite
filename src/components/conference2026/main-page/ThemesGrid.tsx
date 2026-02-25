@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Scale, Shield, Landmark, Globe, Briefcase, FileCode, ArrowRight, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const themes = [
     {
@@ -95,13 +96,14 @@ export function ThemesGrid() {
                     viewport={{ once: true }}
                     className="flex justify-center"
                 >
-                    <Button
-                        size="lg"
-                        variant="outline"
-                        className="h-14 px-10 rounded-full border-border/40 hover:bg-slate-50 font-bold text-base text-slate-600 hover:text-primary transition-all duration-300"
-                    >
-                        SEE MORE THEMES <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    <Link href="/conference/international-legal-conference-2026/themes">
+                        <Button
+                            size="lg"
+                            className="px-10 rounded-full border-border/40 hover:bg-slate-50 font-bold text-black/90 hover:text-primary hover:border-2 hover:border-primary transition-all duration-300"
+                        >
+                            SEE MORE THEMES <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                    </Link>
                 </motion.div>
             </div>
         </section>

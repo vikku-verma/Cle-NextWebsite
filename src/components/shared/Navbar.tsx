@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, BookOpen, GraduationCap, Users, Heart } from "lucide-react";
+import { Menu, X, BookOpen, GraduationCap, Users, Heart, Bookmark, Globe, Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
     NavigationMenu,
@@ -56,36 +56,24 @@ export function Navbar() {
                                 </Link>
                             </NavigationMenuItem>
 
-                            {/* Products Mega Menu */}
                             <NavigationMenuItem>
                                 <NavigationMenuTrigger>Products</NavigationMenuTrigger>
                                 <NavigationMenuContent>
-                                    <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-popover text-popover-foreground rounded-xl shadow-xl">
-                                        <li className="row-span-3">
-                                            <NavigationMenuLink asChild>
-                                                <a
-                                                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-primary hover:bg-primary/90 p-6 no-underline outline-none focus:shadow-md transition-colors"
-                                                    href="/products/journals"
-                                                >
-                                                    <BookOpen className="h-6 w-6 text-white" />
-                                                    <div className="mb-2 mt-4 text-lg font-medium text-white">
-                                                        Journals
-                                                    </div>
-                                                    <p className="text-sm leading-tight text-white/90">
-                                                        Access high-impact legal research and publish your work.
-                                                    </p>
-                                                </a>
-                                            </NavigationMenuLink>
-                                        </li>
+                                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 p-4 md:w-[500px] lg:w-[600px] bg-popover text-popover-foreground rounded-xl shadow-xl border border-border/50">
                                         <li>
                                             <NavigationMenuLink asChild>
                                                 <Link
-                                                    href="/products/journals/publication"
-                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted"
+                                                    href="/products/journals"
+                                                    className="group flex flex-col justify-start select-none rounded-lg p-4 leading-none no-underline outline-none transition-all duration-300 hover:bg-primary/5 hover:shadow-sm focus:bg-primary/5 border border-transparent hover:border-primary/10"
                                                 >
-                                                    <div className="text-sm font-medium leading-none">Publication</div>
-                                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                                        Submit research papers for review.
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary/85 group-hover:text-black group-hover:scale-105 shadow-sm">
+                                                            <BookOpen className="h-5 w-5 hover:text-black" />
+                                                        </div>
+                                                        <div className="text-sm font-semibold leading-none group-hover:text-primary transition-colors">Journals</div>
+                                                    </div>
+                                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-foreground/80 transition-colors mt-3">
+                                                        Access high-impact legal research and publish your work.
                                                     </p>
                                                 </Link>
                                             </NavigationMenuLink>
@@ -94,10 +82,15 @@ export function Navbar() {
                                             <NavigationMenuLink asChild>
                                                 <Link
                                                     href="/products/journals/subscription"
-                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted"
+                                                    className="group flex flex-col justify-start select-none rounded-lg p-4 leading-none no-underline outline-none transition-all duration-300 hover:bg-primary/5 hover:shadow-sm focus:bg-primary/5 border border-transparent hover:border-primary/10"
                                                 >
-                                                    <div className="text-sm font-medium leading-none">Subscription</div>
-                                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary/85 group-hover:text-black group-hover:scale-105 shadow-sm">
+                                                            <Bookmark className="h-5 w-5 hover:text-black" />
+                                                        </div>
+                                                        <div className="text-sm font-semibold leading-none group-hover:text-primary transition-colors">Subscription</div>
+                                                    </div>
+                                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-foreground/80 transition-colors mt-3">
                                                         Subscribe to our premium journals.
                                                     </p>
                                                 </Link>
@@ -107,11 +100,16 @@ export function Navbar() {
                                             <NavigationMenuLink asChild>
                                                 <Link
                                                     href="/conference/international-legal-conference-2026"
-                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted"
+                                                    className="group flex flex-col justify-start select-none rounded-lg p-4 leading-none no-underline outline-none transition-all duration-300 hover:bg-primary/5 hover:shadow-sm focus:bg-primary/5 border border-transparent hover:border-primary/10"
                                                     target="_blank"
                                                 >
-                                                    <div className="text-sm font-medium leading-none">Conferences</div>
-                                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary/85 group-hover:text-black group-hover:scale-105 shadow-sm">
+                                                            <Globe className="h-5 w-5 hover:text-black" />
+                                                        </div>
+                                                        <div className="text-sm font-semibold leading-none group-hover:text-primary transition-colors">Conferences</div>
+                                                    </div>
+                                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-foreground/80 transition-colors mt-3">
                                                         Attend global legal summits.
                                                     </p>
                                                 </Link>
@@ -121,10 +119,15 @@ export function Navbar() {
                                             <NavigationMenuLink asChild>
                                                 <Link
                                                     href="/products/workshops"
-                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted"
+                                                    className="group flex flex-col justify-start select-none rounded-lg p-4 leading-none no-underline outline-none transition-all duration-300 hover:bg-primary/5 hover:shadow-sm focus:bg-primary/5 border border-transparent hover:border-primary/10"
                                                 >
-                                                    <div className="text-sm font-medium leading-none">Workshops</div>
-                                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary/85 group-hover:text-black group-hover:scale-105 shadow-sm">
+                                                            <Briefcase className="h-5 w-5 hover:text-black" />
+                                                        </div>
+                                                        <div className="text-sm font-semibold leading-none group-hover:text-primary transition-colors">Workshops</div>
+                                                    </div>
+                                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-foreground/80 transition-colors mt-3">
                                                         Hands-on legal training programs.
                                                     </p>
                                                 </Link>
@@ -163,12 +166,6 @@ export function Navbar() {
                             <span className="sr-only">Wishlist</span>
                         </Link>
                     </Button>
-                    <Button variant="ghost" asChild className="hidden xl:flex">
-                        <Link href="/login">Log in</Link>
-                    </Button>
-                    <Button className="hidden bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6" asChild>
-                        <Link href="/membership">Join Membership</Link>
-                    </Button>
                 </div>
 
                 {/* Mobile Menu Trigger */}
@@ -201,10 +198,10 @@ export function Navbar() {
                                 <Link href="/products/journals" onClick={() => setIsOpen(false)} className="block text-sm font-medium hover:text-primary">
                                     Journals
                                 </Link>
-                                <Link href="/products/journals/publication" onClick={() => setIsOpen(false)} className="block text-sm text-muted-foreground hover:text-primary">
-                                    Submit Paper
+                                <Link href="/products/journals/subscription" onClick={() => setIsOpen(false)} className="block text-sm font-medium hover:text-primary">
+                                    Subscription
                                 </Link>
-                                <Link href="/products/conferences" onClick={() => setIsOpen(false)} className="block text-sm font-medium hover:text-primary">
+                                <Link href="/conference/international-legal-conference-2026" target="_blank" onClick={() => setIsOpen(false)} className="block text-sm font-medium hover:text-primary">
                                     Conferences
                                 </Link>
                                 <Link href="/products/workshops" onClick={() => setIsOpen(false)} className="block text-sm font-medium hover:text-primary">
@@ -227,12 +224,6 @@ export function Navbar() {
                         <Link href="/contact" onClick={() => setIsOpen(false)} className="text-sm font-medium hover:text-primary">
                             Contact Us
                         </Link>
-
-                        <div className="pt-4">
-                            <Button className="w-full bg-primary text-primary-foreground rounded-full" asChild>
-                                <Link href="/membership">Join Membership</Link>
-                            </Button>
-                        </div>
                     </div>
                 </div>
             )}

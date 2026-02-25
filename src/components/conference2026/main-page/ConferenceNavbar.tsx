@@ -14,7 +14,7 @@ const navItems = [
     // { name: "Dates", href: "/conference/international-legal-conference-2026/dates" },
     { name: "Registration fees", href: "/conference/international-legal-conference-2026/registration" },
     { name: "Speakers", href: "/conference/international-legal-conference-2026/speakers" },
-    { name: "Contact   ", href: "/conference/international-legal-conference-2026#contact" },
+    { name: "Contact", href: "/conference/international-legal-conference-2026/contact" },
 ];
 
 export function ConferenceNavbar() {

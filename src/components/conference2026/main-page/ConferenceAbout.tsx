@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const highlights = [
     {
@@ -79,12 +80,14 @@ export function ConferenceAbout() {
                     viewport={{ once: true }}
                     className="flex justify-center"
                 >
-                    <Button
-                        size="lg"
-                        className="h-14 px-10 rounded-full bg-secondary hover:bg-secondary/95 text-white font-bold text-base shadow-lg shadow-secondary/10 transition-all duration-300 font-sans tracking-wide"
-                    >
-                        EXPLORE MORE <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    <Link href="/conference/international-legal-conference-2026/about">
+                        <Button
+                            size="lg"
+                            className="px-10 rounded-full border-border/40 hover:bg-slate-50 font-bold text-black/90 hover:text-primary hover:border-2 hover:border-primary transition-all duration-300"
+                        >
+                            EXPLORE MORE <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                    </Link>
                 </motion.div>
             </div>
         </section>

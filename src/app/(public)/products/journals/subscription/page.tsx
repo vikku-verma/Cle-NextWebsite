@@ -207,17 +207,15 @@ export default function SubscriptionPage() {
             {!loading && totalPages > 1 && (
                 <section className="container py-8 px-4 md:px-6 flex justify-center items-center gap-4">
                     <Button
-                        variant="outline"
                         onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
                         disabled={currentPage === 1}
                     >
                         Previous
                     </Button>
-                    <span className="text-sm font-medium text-muted-foreground">
+                    <span className="text-sm font-bold text-muted-foreground">
                         Page {currentPage} of {totalPages}
                     </span>
                     <Button
-                        variant="outline"
                         onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
                         disabled={currentPage === totalPages}
                     >

@@ -326,6 +326,15 @@ export const scheduleData = [
                 "type": "session"
             },
             {
+                "time": "Session Chair",
+                "title": "Aligarh Muslim University, Malappuram Center, Kerala",
+                "speaker": "Dr. NASEEMA P K",
+                "speakerId": "dr-naseema-p-k",
+                "image": "http://cle.celnet.in/wp-content/uploads/2026/01/Dr.-NASEEMA-P-K.avif",
+                "organization": "Aligarh Muslim University, Malappuram Center, Kerala",
+                "type": "session"
+            },
+            {
                 "time": "Theme 1: Strengthening Environmental Law for Sustainable Development",
                 "title": "Theme 1: Strengthening Environmental Law for Sustainable Development",
                 "speaker": "Dr. Prashant Kumar Srivastava",

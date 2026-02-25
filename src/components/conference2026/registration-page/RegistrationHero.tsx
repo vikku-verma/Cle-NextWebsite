@@ -14,7 +14,7 @@ export function RegistrationHero() {
             </div>
 
             <div className="container relative z-10 px-4 md:px-6">
-                <div className="max-w-4xl mx-auto text-center">
+                <div className="flex flex-col items-center max-w-4xl mx-auto text-center">
                     <ConferenceBreadcrumb pageName="Registration" />
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}

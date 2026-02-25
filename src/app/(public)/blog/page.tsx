@@ -102,7 +102,7 @@ async function BlogContent({
                     {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
                         <Button
                             key={p}
-                            variant={p === page ? "default" : "outline"}
+                            // variant={p === page ? "default" : "outline"}
                             size="sm"
                             asChild
                         >
@@ -177,13 +177,13 @@ export default async function BlogPage({
                         <span className="text-sm font-medium flex items-center gap-2">
                             <Filter className="h-4 w-4" /> Filters:
                         </span>
-                        <Button variant={!category && !tag ? "secondary" : "outline"} size="sm" asChild>
+                        <Button size="sm" asChild>
                             <Link href="/blog">All</Link>
                         </Button>
                         {categories.slice(0, 5).map(cat => (
                             <Button
                                 key={cat.id}
-                                variant={category === cat.id ? "secondary" : "outline"}
+                                // variant={category === cat.id ? "secondary" : "outline"}
                                 size="sm"
                                 asChild
                             >

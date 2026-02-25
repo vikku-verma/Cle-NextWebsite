@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Clock, MapPin, CalendarDays, ArrowRight, Star, Landmark } from "lucide-react";
+import { Clock, MapPin, CalendarDays, ArrowRight, Star, Landmark, User } from "lucide-react";
 import { scheduleData, speakersData } from "@/lib/data/conference-data";
 
 function EventCard({ event, isOdd }: { event: any, isOdd: boolean }) {
@@ -75,6 +75,30 @@ function EventCard({ event, isOdd }: { event: any, isOdd: boolean }) {
     );
 }
 
+function SpeakerAvatar({ event }: { event: any }) {
+    const [error, setError] = useState(false);
+    // Ignore images that are via.placeholder.com links as these are placeholders without real photos
+    const hasImage = event.image && !event.image.includes("via.placeholder.com");
+
+    return (
+        <div className="relative mb-6 w-full flex justify-center">
+            <div className={`w-24 h-24 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 ${hasImage && !error ? 'p-[2px] bg-[#8b4513] shadow-md' : 'bg-[#8b4513]/10 border-2 border-[#8b4513]/20 shadow-sm'}`}>
+                {hasImage && !error ? (
+                    <img
+                        src={event.image}
+                        alt={event.speaker}
+                        onError={() => setError(true)}
+                        className="w-full h-full rounded-full object-cover border-[3px] border-white bg-white"
+                        loading="lazy"
+                    />
+                ) : (
+                    <User className="h-10 w-10 text-[#8b4513]" />
+                )}
+            </div>
+        </div>
+    );
+}
+
 export function DetailedSchedule() {
     const [activeDay, setActiveDay] = useState(scheduleData[0].id);
 
@@ -105,19 +129,18 @@ export function DetailedSchedule() {
 
                 <div className="max-w-5xl mx-auto">
                     {/* Day Selector Tabs */}
-                    <div className="flex flex-wrap justify-center gap-2 mb-12">
+                    <div className="flex flex-wrap justify-center gap-10 mb-12">
                         {scheduleData.map((day) => (
                             <button
                                 key={day.id}
                                 onClick={() => setActiveDay(day.id)}
-                                className={`px-6 py-3 rounded-xl font-sans font-bold text-sm md:text-base border transition-all duration-300 ${activeDay === day.id
+                                className={`px-5 py-3 rounded-xl font-sans font-bold text-sm md:text-base border transition-all duration-300 ${activeDay === day.id
                                     ? "bg-primary text-white border-primary shadow-lg shadow-primary/20"
                                     : "bg-white text-muted-foreground border-border/60 hover:border-primary/40 hover:text-foreground"
                                     }`}
                             >
                                 <div className="flex flex-col items-center">
-                                    <span className="mb-1">{day.date.split(':')[0]}</span> {/* e.g., Day 1 */}
-                                    <span className="text-xs font-normal opacity-80">{day.date.split(':')[1]?.trim()}</span> {/* e.g., April 16, 2026 */}
+                                    <span className="mb-1">{day.date.split(':')[0]}</span>
                                 </div>
                             </button>
                         ))}
@@ -165,17 +188,7 @@ export function DetailedSchedule() {
                                                         {/* Top Accent Bar */}
                                                         <div className="absolute top-0 left-0 w-full h-1.5 bg-[#8b4513]"></div>
 
-                                                        {event.image && (
-                                                            <div className="relative mb-6">
-                                                                <div className="w-24 h-24 rounded-full p-1 bg-[#8b4513] group-hover:scale-110 transition-transform duration-300">
-                                                                    <img
-                                                                        src={event.image}
-                                                                        alt={event.speaker}
-                                                                        className="w-full h-full rounded-full object-cover border-4 border-white"
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        )}
+                                                        <SpeakerAvatar event={event} />
 
                                                         <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-[#8b4513] mb-2">
                                                             Session Chair
@@ -220,17 +233,7 @@ export function DetailedSchedule() {
                                                                 {/* Top Accent Bar */}
                                                                 <div className="absolute top-0 left-0 w-full h-1.5 bg-[#8b4513]"></div>
 
-                                                                {event.image && (
-                                                                    <div className="relative mb-6">
-                                                                        <div className="w-24 h-24 rounded-full p-1 bg-[#8b4513] group-hover:scale-110 transition-transform duration-300">
-                                                                            <img
-                                                                                src={event.image}
-                                                                                alt={event.speaker}
-                                                                                className="w-full h-full rounded-full object-cover border-4 border-white"
-                                                                            />
-                                                                        </div>
-                                                                    </div>
-                                                                )}
+                                                                <SpeakerAvatar event={event} />
 
                                                                 <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-[#8b4513] mb-2">
                                                                     Theme Speaker

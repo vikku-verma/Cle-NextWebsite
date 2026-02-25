@@ -92,7 +92,7 @@ export function HeroSection() {
 
                                     <div className="pt-4">
                                         <Link
-                                            href="https://cle.celnet.in/conference/international-legal-conference-2026/"
+                                            href="/conference/international-legal-conference-2026"
                                             target="_blank"
                                             className="inline-flex items-center text-sm font-semibold text-accent hover:text-accent/80"
                                         >
