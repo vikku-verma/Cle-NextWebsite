@@ -33,11 +33,11 @@ export function JournalCard({ journal, viewMode }: JournalCardProps) {
                         <BookOpen className="w-3 h-3" />
                         <span>Legal Journal</span>
                     </div>
-                    <Link href={`/journals/${journal.slug}`}>
+                    <a href={externalLink} target="_blank" rel="noopener noreferrer">
                         <h3 className="text-xl font-bold text-card-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
                             {journal.title}
                         </h3>
-                    </Link>
+                    </a>
                     <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-3">
                         {journal.description}
                     </p>
@@ -77,9 +77,9 @@ export function JournalCard({ journal, viewMode }: JournalCardProps) {
                         Vol. {journal.id}
                     </span>
                 </div>
-                <Link href={`/journals/${journal.slug}`}>
+                <a href={externalLink} target="_blank" rel="noopener noreferrer">
                     <h3 className="text-lg font-bold text-card-foreground group-hover:text-primary transition-colors line-clamp-1">{journal.title}</h3>
-                </Link>
+                </a>
                 <p className="text-muted-foreground text-sm mt-1 line-clamp-1 italic">
                     {journal.description.substring(0, 100)}...
                 </p>

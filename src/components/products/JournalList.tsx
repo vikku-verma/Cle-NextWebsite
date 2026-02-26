@@ -114,9 +114,9 @@ export function JournalList() {
                                                         </Link>
                                                     </td>
                                                     <td className="px-4 py-4 border-r border-slate-100 max-w-xs">
-                                                        <Link href={`/journals/${journal.slug}`} className="font-semibold text-slate-800 hover:text-[#92400e] transition-colors line-clamp-2">
+                                                        <a href={externalLink} target="_blank" rel="noopener noreferrer" className="font-semibold text-slate-800 hover:text-[#92400e] transition-colors line-clamp-2">
                                                             {journal.title}
-                                                        </Link>
+                                                        </a>
                                                     </td>
                                                     <td className="px-4 py-4 border-r border-slate-100">{journal.issues || 2}</td>
                                                     <td className="px-4 py-4 border-r border-slate-100 uppercase font-bold text-[#92400e]">{journal.abbreviation || journal.slug}</td>

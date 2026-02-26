@@ -75,7 +75,7 @@ export default function SubscriptionPage() {
                         Get unlimited access to world-class legal scholarship and stay ahead in your practice.
                     </p>
                     <div className="mt-8">
-                        <Button variant="outline" asChild>
+                        <Button asChild>
                             <Link href="/wishlist">
                                 <Heart className="mr-2 h-4 w-4" /> View Wishlist
                             </Link>

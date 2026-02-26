@@ -1,13 +1,11 @@
 import Link from "next/link";
-import { Facebook, Twitter, Linkedin, Instagram, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Facebook, Twitter, Linkedin } from "lucide-react";
 
 export function Footer() {
     return (
         <footer className="w-full border-t bg-background text-sm">
             <div className="container px-4 py-12 md:px-6 md:py-16">
-                <div className="grid gap-8 lg:grid-cols-4">
+                <div className="grid gap-8 lg:grid-cols-3">
 
                     {/* Brand Column */}
                     <div className="space-y-6">
@@ -58,20 +56,6 @@ export function Footer() {
                             <li><Link href="/privacy" className="hover:text-foreground hover:underline transition-colors">Privacy Policy</Link></li>
                             <li><Link href="/terms" className="hover:text-foreground hover:underline transition-colors">Terms of Service</Link></li>
                         </ul>
-                    </div>
-
-                    {/* Newsletter */}
-                    <div className="space-y-4">
-                        <h3 className="font-heading text-lg font-semibold text-foreground">Subscribe</h3>
-                        <p className="text-muted-foreground">
-                            Get the latest updates on legal research and events.
-                        </p>
-                        <div className="flex flex-col gap-2">
-                            <Input placeholder="Enter your email" type="email" />
-                            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                                Subscribe
-                            </Button>
-                        </div>
                     </div>
                 </div>
 

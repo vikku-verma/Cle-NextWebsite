@@ -2,7 +2,7 @@ import { Workshop, WordPressFormEntry } from "@/lib/types";
 import { cache } from "react";
 
 export const fetchWorkshops = cache(async (): Promise<Workshop[]> => {
-    const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+    const API_URL = process.env.WORKSHOP_API_URL;
     const username = process.env.WP_USER!;
     const appPassword = process.env.WP_APP_PASSWORD!;
 
@@ -146,7 +146,7 @@ export const fetchWorkshops = cache(async (): Promise<Workshop[]> => {
     }
 });
 export async function fetchWorkshopById(id: string): Promise<Workshop | null> {
-    const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+    const API_URL = process.env.WORKSHOP_API_URL;
     const username = process.env.WP_USER!;
     const appPassword = process.env.WP_APP_PASSWORD!;
 
