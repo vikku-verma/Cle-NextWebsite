@@ -28,10 +28,25 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import {
+    Command,
+    CommandEmpty,
+    CommandGroup,
+    CommandInput,
+    CommandItem,
+    CommandList,
+} from "@/components/ui/command";
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { FileUp, Send, Calculator, Users } from "lucide-react";
+import { FileUp, Send, Calculator, Users, Check, ChevronsUpDown } from "lucide-react";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import { Country, State, City } from "country-state-city";
 
 // --- PRICING DATA EXACTLY MATCHING `PricingTiers.tsx` ---
 const PRICING_DATA = {
@@ -68,8 +83,8 @@ const registrationSchema = z.object({
 
     // Billing / Address
     country: z.string().min(2, "Country is required"),
-    state: z.string().min(2, "State/Province is required"),
-    city: z.string().min(2, "City is required"),
+    state: z.string().optional(),
+    city: z.string().optional(),
 
     // Multipliers
     numberOfDelegates: z.number().min(1, "At least 1 delegate is required.").max(50, "Maximum 50 delegates per bulk order."),
@@ -90,6 +105,10 @@ const registrationSchema = z.object({
 type RegistrationFormValues = z.infer<typeof registrationSchema>;
 
 export function RegistrationForm() {
+    const [openCountry, setOpenCountry] = useState(false);
+    const [openState, setOpenState] = useState(false);
+    const [openCity, setOpenCity] = useState(false);
+
     const [calculatedTotal, setCalculatedTotal] = useState({ amount: 0, currency: "INR", symbol: "₹" });
     const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
 
@@ -161,6 +180,10 @@ export function RegistrationForm() {
             return;
         }
 
+        const finalCountry = values.country.includes('|') ? values.country.split('|')[1] : values.country;
+        const finalState = values.state?.includes('|') ? values.state.split('|')[1] : (values.state || "N/A");
+        const finalCity = values.city || "N/A";
+
         const toastId = toast.loading("Initializing secure payment...");
 
         try {
@@ -170,6 +193,9 @@ export function RegistrationForm() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     ...values,
+                    country: finalCountry,
+                    state: finalState,
+                    city: finalCity,
                     totalAmountPaid: calculatedTotal.amount,
                     currency: calculatedTotal.currency
                 }),
@@ -226,6 +252,9 @@ export function RegistrationForm() {
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
                                 ...values,
+                                country: finalCountry,
+                                state: finalState,
+                                city: finalCity,
                                 totalAmountPaid: calculatedTotal.amount,
                                 currency: calculatedTotal.currency,
                                 razorpay_order_id: response.razorpay_order_id,
@@ -362,9 +391,64 @@ export function RegistrationForm() {
                                         render={({ field }) => (
                                             <FormItem>
                                                 <FormLabel className="font-sans font-semibold text-foreground/80">Country</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="India" className="bg-[#FBFAF8] border-border/60 focus:bg-white" {...field} />
-                                                </FormControl>
+                                                <div className="relative">
+                                                    <FormControl>
+                                                        <Button
+                                                            type="button"
+                                                            role="combobox"
+                                                            onClick={() => setOpenCountry(!openCountry)}
+                                                            className={cn(
+                                                                "w-full justify-between bg-[#FBFAF8] border-border/60 hover:bg-white font-normal text-muted-foreground",
+                                                                field.value && "text-foreground font-medium"
+                                                            )}
+                                                        >
+                                                            {field.value
+                                                                ? field.value.split('|')[1]
+                                                                : "Select a Country"}
+                                                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                        </Button>
+                                                    </FormControl>
+                                                    {openCountry && (
+                                                        <>
+                                                            <div className="fixed inset-0 z-40" onClick={() => setOpenCountry(false)} />
+                                                            <div className="absolute top-[calc(100%+4px)] left-0 z-50 w-[300px] sm:w-[500px] rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in fade-in-0 zoom-in-95">
+                                                                <Command className="h-[300px] flex flex-col text-sm border-none shadow-none bg-popover">
+                                                                    <div className="p-2 pb-0">
+                                                                        <CommandInput placeholder="Search country..." className="h-10 text-base sm:text-sm border rounded-md px-3" />
+                                                                    </div>
+                                                                    <div className="flex-1 overflow-y-auto min-h-0">
+                                                                        <CommandEmpty className="py-6 text-center text-sm">No country found.</CommandEmpty>
+                                                                        <CommandGroup className="p-1">
+                                                                            <CommandList>
+                                                                                {Country.getAllCountries().map((country) => (
+                                                                                    <CommandItem
+                                                                                        value={country.name}
+                                                                                        key={country.isoCode}
+                                                                                        onSelect={() => {
+                                                                                            field.onChange(`${country.isoCode}|${country.name}`);
+                                                                                            form.setValue('state', '');
+                                                                                            form.setValue('city', '');
+                                                                                            setOpenCountry(false);
+                                                                                        }}
+                                                                                        className="rounded-sm flex items-center gap-2 px-2 py-1.5 cursor-pointer aria-selected:bg-accent/50"
+                                                                                    >
+                                                                                        <Check
+                                                                                            className={cn(
+                                                                                                "h-4 w-4 text-primary",
+                                                                                                field.value === `${country.isoCode}|${country.name}` ? "opacity-100" : "opacity-0"
+                                                                                            )}
+                                                                                        />
+                                                                                        {country.name}
+                                                                                    </CommandItem>
+                                                                                ))}
+                                                                            </CommandList>
+                                                                        </CommandGroup>
+                                                                    </div>
+                                                                </Command>
+                                                            </div>
+                                                        </>
+                                                    )}
+                                                </div>
                                                 <FormMessage />
                                             </FormItem>
                                         )}
@@ -372,28 +456,170 @@ export function RegistrationForm() {
                                     <FormField
                                         control={form.control}
                                         name="state"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="font-sans font-semibold text-foreground/80">State / Province</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="Delhi" className="bg-[#FBFAF8] border-border/60 focus:bg-white" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
+                                        render={({ field }) => {
+                                            const watchCountry = form.watch("country");
+                                            const countryIso = watchCountry ? watchCountry.split('|')[0] : "";
+                                            const states = countryIso ? State.getStatesOfCountry(countryIso) : [];
+
+                                            // Fallback to text input if country has no states in the DB
+                                            const hasStates = states.length > 0;
+
+                                            return (
+                                                <FormItem>
+                                                    <FormLabel className="font-sans font-semibold text-foreground/80">State / Province</FormLabel>
+                                                    {hasStates ? (
+                                                        <div className="relative">
+                                                            <FormControl>
+                                                                <Button
+                                                                    // variant="outline"
+                                                                    role="combobox"
+                                                                    type="button"
+                                                                    onClick={() => setOpenState(!openState)}
+                                                                    disabled={!watchCountry}
+                                                                    className={cn(
+                                                                        "w-full justify-between bg-[#FBFAF8] border-border/60 hover:bg-white font-normal text-muted-foreground",
+                                                                        field.value && "text-foreground font-medium"
+                                                                    )}
+                                                                >
+                                                                    {field.value
+                                                                        ? field.value.split('|')[1]
+                                                                        : (!watchCountry ? "Select Country First" : "Select a State")}
+                                                                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                                </Button>
+                                                            </FormControl>
+                                                            {openState && (
+                                                                <>
+                                                                    <div className="fixed inset-0 z-40" onClick={() => setOpenState(false)} />
+                                                                    <div className="absolute top-[calc(100%+4px)] left-0 z-50 w-[300px] sm:w-[500px] rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in fade-in-0 zoom-in-95">
+                                                                        <Command className="h-[300px] flex flex-col text-sm border-none shadow-none bg-popover">
+                                                                            <div className="p-2 pb-0">
+                                                                                <CommandInput placeholder="Search state..." className="h-10 text-base sm:text-sm border rounded-md px-3" />
+                                                                            </div>
+                                                                            <div className="flex-1 overflow-y-auto min-h-0">
+                                                                                <CommandEmpty className="py-6 text-center text-sm">No state found.</CommandEmpty>
+                                                                                <CommandGroup className="p-1">
+                                                                                    <CommandList>
+                                                                                        {states.map((state) => (
+                                                                                            <CommandItem
+                                                                                                value={state.name}
+                                                                                                key={`${state.isoCode}-${state.name}`}
+                                                                                                onSelect={() => {
+                                                                                                    field.onChange(`${state.isoCode}|${state.name}`);
+                                                                                                    form.setValue('city', '');
+                                                                                                    setOpenState(false);
+                                                                                                }}
+                                                                                                className="rounded-sm flex items-center gap-2 px-2 py-1.5 cursor-pointer aria-selected:bg-accent/50"
+                                                                                            >
+                                                                                                <Check
+                                                                                                    className={cn(
+                                                                                                        "h-4 w-4 text-primary",
+                                                                                                        field.value === `${state.isoCode}|${state.name}` ? "opacity-100" : "opacity-0"
+                                                                                                    )}
+                                                                                                />
+                                                                                                {state.name}
+                                                                                            </CommandItem>
+                                                                                        ))}
+                                                                                    </CommandList>
+                                                                                </CommandGroup>
+                                                                            </div>
+                                                                        </Command>
+                                                                    </div>
+                                                                </>
+                                                            )}
+                                                        </div>
+                                                    ) : (
+                                                        <FormControl>
+                                                            <Input placeholder="Enter State / Province" className="bg-[#FBFAF8] border-border/60 focus:bg-white" disabled={!watchCountry} {...field} value={field.value || ""} />
+                                                        </FormControl>
+                                                    )}
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )
+                                        }}
                                     />
                                     <FormField
                                         control={form.control}
                                         name="city"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="font-sans font-semibold text-foreground/80">City</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="New Delhi" className="bg-[#FBFAF8] border-border/60 focus:bg-white" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
+                                        render={({ field }) => {
+                                            const watchCountry = form.watch("country");
+                                            const countryIso = watchCountry ? watchCountry.split('|')[0] : "";
+                                            const watchState = form.watch("state");
+                                            const stateIso = watchState ? watchState.split('|')[0] : "";
+
+                                            const cities = (countryIso && stateIso) ? City.getCitiesOfState(countryIso, stateIso) : [];
+                                            const hasCities = cities.length > 0;
+
+                                            return (
+                                                <FormItem>
+                                                    <FormLabel className="font-sans font-semibold text-foreground/80">City</FormLabel>
+                                                    {hasCities ? (
+                                                        <div className="relative">
+                                                            <FormControl>
+                                                                <Button
+                                                                    // variant="outline"
+                                                                    role="combobox"
+                                                                    type="button"
+                                                                    onClick={() => setOpenCity(!openCity)}
+                                                                    disabled={!watchState}
+                                                                    className={cn(
+                                                                        "w-full justify-between bg-[#FBFAF8] border-border/60 hover:bg-white font-normal text-muted-foreground",
+                                                                        field.value && "text-foreground font-medium"
+                                                                    )}
+                                                                >
+                                                                    {field.value
+                                                                        ? field.value
+                                                                        : (!watchState ? "Select State First" : "Select a City")}
+                                                                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                                </Button>
+                                                            </FormControl>
+                                                            {openCity && (
+                                                                <>
+                                                                    <div className="fixed inset-0 z-40" onClick={() => setOpenCity(false)} />
+                                                                    <div className="absolute top-[calc(100%+4px)] left-0 z-50 w-[300px] sm:w-[500px] rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in fade-in-0 zoom-in-95">
+                                                                        <Command className="h-[300px] flex flex-col text-sm border-none shadow-none bg-popover">
+                                                                            <div className="p-2 pb-0">
+                                                                                <CommandInput placeholder="Search city..." className="h-10 text-base sm:text-sm border rounded-md px-3" />
+                                                                            </div>
+                                                                            <div className="flex-1 overflow-y-auto min-h-0">
+                                                                                <CommandEmpty className="py-6 text-center text-sm">No city found.</CommandEmpty>
+                                                                                <CommandGroup className="p-1">
+                                                                                    <CommandList>
+                                                                                        {cities.map((city) => (
+                                                                                            <CommandItem
+                                                                                                value={city.name}
+                                                                                                key={city.name}
+                                                                                                onSelect={() => {
+                                                                                                    field.onChange(city.name);
+                                                                                                    setOpenCity(false);
+                                                                                                }}
+                                                                                                className="rounded-sm flex items-center gap-2 px-2 py-1.5 cursor-pointer aria-selected:bg-accent/50"
+                                                                                            >
+                                                                                                <Check
+                                                                                                    className={cn(
+                                                                                                        "h-4 w-4 text-primary",
+                                                                                                        field.value === city.name ? "opacity-100" : "opacity-0"
+                                                                                                    )}
+                                                                                                />
+                                                                                                {city.name}
+                                                                                            </CommandItem>
+                                                                                        ))}
+                                                                                    </CommandList>
+                                                                                </CommandGroup>
+                                                                            </div>
+                                                                        </Command>
+                                                                    </div>
+                                                                </>
+                                                            )}
+                                                        </div>
+                                                    ) : (
+                                                        <FormControl>
+                                                            <Input placeholder="Enter City" className="bg-[#FBFAF8] border-border/60 focus:bg-white" disabled={!watchCountry} {...field} value={field.value || ""} />
+                                                        </FormControl>
+                                                    )}
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )
+                                        }}
                                     />
                                 </div>
                             </div>

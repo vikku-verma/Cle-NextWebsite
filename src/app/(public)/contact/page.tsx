@@ -1,6 +1,6 @@
 "use client";
 
-import { WordPressForm } from "@/components/shared/WordPressForm";
+import { ContactForm } from "@/components/shared/ContactForm";
 import { Mail, MapPin, Phone, HelpCircle, ArrowRight, Users } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -118,7 +118,7 @@ export default function ContactPage() {
                     {/* Contact Form */}
                     <div className="rounded-2xl border bg-card p-8 shadow-sm h-fit min-h-[500px]">
                         <h2 className="font-heading text-2xl font-bold mb-6">Send us a Message</h2>
-                        <WordPressForm />
+                        <ContactForm />
                     </div>
                 </div>
             </section>
