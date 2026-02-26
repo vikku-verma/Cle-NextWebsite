@@ -5,11 +5,11 @@ import { calculateRegistrationPrice } from "@/lib/pricing";
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { region, category, presentationType, numberOfDelegates } = body;
+        const { region, category, presentationType, numberOfDelegates, entryId } = body;
 
-        if (!region || !category || !presentationType || !numberOfDelegates) {
+        if (!region || !category || !presentationType || !numberOfDelegates || !entryId) {
             return NextResponse.json(
-                { error: "Missing required registration pricing parameters" },
+                { error: "Missing required registration pricing parameters or entry ID" },
                 { status: 400 }
             );
         }
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
         const options = {
             amount: amountInSubunits,
             currency: currency,
-            receipt: `rcptid_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+            receipt: `rcptid_${entryId}_${Date.now()}`,
         };
 
         const order = await razorpay.orders.create(options);
@@ -50,6 +50,7 @@ export async function POST(req: NextRequest) {
             id: order.id,
             currency: order.currency,
             amount: order.amount,
+            receipt: order.receipt,
             razorpay_key_id: key_id
         });
 

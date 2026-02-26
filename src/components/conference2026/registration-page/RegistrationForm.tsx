@@ -164,7 +164,23 @@ export function RegistrationForm() {
         const toastId = toast.loading("Initializing secure payment...");
 
         try {
-            // 1. Create Razorpay Order securely via your backend route
+            // Step 1: Create an "Unpaid" lead in WordPress Formidable Forms
+            const leadRes = await fetch("/api/conference2026/register-lead", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    ...values,
+                    totalAmountPaid: calculatedTotal.amount,
+                    currency: calculatedTotal.currency
+                }),
+            });
+            const leadData = await leadRes.json();
+
+            if (!leadRes.ok) throw new Error(leadData.error || "Failed to create registration lead.");
+
+            const entryId = leadData.entryId;
+
+            // Step 2: Create Razorpay Order securely via your backend route
             const orderRes = await fetch("/api/conference2026/razorpay", {
                 method: "POST",
                 headers: {
@@ -174,7 +190,8 @@ export function RegistrationForm() {
                     region: values.region,
                     category: values.category,
                     presentationType: values.presentationType,
-                    numberOfDelegates: values.numberOfDelegates
+                    numberOfDelegates: values.numberOfDelegates,
+                    entryId: entryId
                 }),
             });
 
@@ -214,6 +231,7 @@ export function RegistrationForm() {
                                 razorpay_order_id: response.razorpay_order_id,
                                 razorpay_payment_id: response.razorpay_payment_id,
                                 razorpay_signature: response.razorpay_signature,
+                                entryId: entryId
                             })
                         });
 

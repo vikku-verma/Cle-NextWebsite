@@ -23,8 +23,13 @@ export async function POST(req: NextRequest) {
             currency,
             razorpay_order_id,
             razorpay_payment_id,
-            razorpay_signature
+            razorpay_signature,
+            entryId
         } = data;
+
+        if (!entryId) {
+            return NextResponse.json({ error: "Missing Entry ID for payment update." }, { status: 400 });
+        }
 
         console.log("Received registration data:", {
             fullName,
@@ -64,48 +69,13 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Invalid payment signature" }, { status: 400 });
         }
 
-        // 2. Convert internal frontend values to exactly match WordPress Formidable Options
-        const regionMap: Record<string, string> = {
-            "india": "India",
-            "international": "International"
-        };
-        const presentationTypeMap: Record<string, string> = {
-            "attendee": "Attendee Only",
-            "paper_presentation": "Author (Paper Presentation)",
-            "poster_presentation": "Author (Poster Presentation)"
-        };
-        const trackMap: Record<string, string> = {
-            "track1": "Law, Policy and Humanities",
-            "track2": "Constitutional and Administrative Law",
-            "track3": "Criminal Law and Justice",
-            "track4": "Corporate and Commercial Law",
-            "track5": "International Law and Relations"
-        };
-
-        // 2. Prepare Payload for WordPress Formidable Forms
+        // 2. Prepare Payload for WordPress Formidable Forms UPDATE
+        // We only update the payment-specific fields to avoid wiping the rest of the form
         const wpPayload = {
-            form_id: 36,
             item_meta: {
-                410: fullName,
-                411: email,
-                412: phone,
-                413: institution,
-                419: regionMap[region] || region,
-                421: category,
-                422: presentationTypeMap[presentationType] || presentationType,
-                423: numberOfDelegates,
-                424: track ? (trackMap[track] || track) : "",
-                425: totalAmountPaid,
-                426: currency,
                 427: razorpay_order_id,
                 428: razorpay_payment_id,
-                429: "Successful",
-                // Assuming sequential IDs for new fields based on previous mapping. 
-                // The site admin might need to adjust these to match their exact Formidable Form setup
-                431: country,
-                432: state,
-                433: city,
-                434: paperTitle || ""
+                429: "Successful"
             }
         };
 
@@ -121,8 +91,13 @@ export async function POST(req: NextRequest) {
             const timeoutId = setTimeout(() => controller.abort(), 10000);
 
             try {
-                const wpResponse = await fetch(wpApiUrl, {
-                    method: 'POST',
+                // Formidable V2 API endpoint for updates: /wp-json/frm/v2/entries/<id>
+                // We assume wpApiUrl is the base form URL `...?form_id=36`. We need to strip standard query params and append ID.
+                const baseUrl = wpApiUrl.split('?')[0];
+                const updateUrl = `${baseUrl}/${entryId}`;
+
+                const wpResponse = await fetch(updateUrl, {
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
