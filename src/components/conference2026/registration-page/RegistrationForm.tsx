@@ -111,6 +111,7 @@ export function RegistrationForm() {
 
     const [calculatedTotal, setCalculatedTotal] = useState({ amount: 0, currency: "INR", symbol: "₹" });
     const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
+    const [hasRestoredDraft, setHasRestoredDraft] = useState(false);
 
     // Load Razorpay SDK
     useEffect(() => {
@@ -145,6 +146,38 @@ export function RegistrationForm() {
             refundPolicyAccepted: false,
         },
     });
+
+    // DRAFT FEATURE: Load from Local Storage on Mount
+    useEffect(() => {
+        if (hasRestoredDraft) return;
+        const draft = localStorage.getItem("conference2026_registration_draft");
+        if (draft) {
+            try {
+                const parsedData = JSON.parse(draft);
+                // Intentionally omitting legal booleans so they must be re-checked manually.
+                const { termsAccepted, refundPolicyAccepted, ...restData } = parsedData;
+                Object.keys(restData).forEach((key) => {
+                    const typedKey = key as keyof RegistrationFormValues;
+                    if (restData[typedKey] !== undefined && restData[typedKey] !== null) {
+                        form.setValue(typedKey, restData[typedKey]);
+                    }
+                });
+                toast.success("Restored your draft registration form.");
+            } catch (e) {
+                console.error("Failed to parse form draft", e);
+            }
+        }
+        setHasRestoredDraft(true);
+    }, [form, hasRestoredDraft]);
+
+    // DRAFT FEATURE: Save to Local Storage on Change
+    useEffect(() => {
+        if (!hasRestoredDraft) return; // Prevent saving the empty defaults before draft restores
+        const subscription = form.watch((value) => {
+            localStorage.setItem("conference2026_registration_draft", JSON.stringify(value));
+        });
+        return () => subscription.unsubscribe();
+    }, [form.watch, hasRestoredDraft]);
 
     // Real-time calculation variables
     const watchRegion = form.watch("region");
@@ -270,6 +303,7 @@ export function RegistrationForm() {
 
                         toast.success("Registration Successful and Saved to WordPress!", { id: verificationToastId, duration: 8000 });
                         form.reset();
+                        localStorage.removeItem("conference2026_registration_draft");
                     } catch (verifyError: any) {
                         toast.error(verifyError.message || "Payment succeeded but registration failed to save. Please contact support.", { id: verificationToastId, duration: 10000 });
                     }

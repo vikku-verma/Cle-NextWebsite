@@ -287,7 +287,7 @@ export default function AboutPage() {
                             </p>
                             <div className="flex flex-wrap justify-center gap-4">
                                 <Button size="lg" className="bg-white text-[#8A5A2B] hover:bg-[#F4F2EE] font-bold" asChild>
-                                    <Link href="/join">Explore Membership Categories</Link>
+                                    <Link href="/membership">Explore Membership Categories</Link>
                                 </Button>
                                 <Button size="lg" variant="outline" className="border-white text-[#8A5A2B] hover:bg-white/10 font-bold" asChild>
                                     <Link href="/contact">Contact Our Team</Link>

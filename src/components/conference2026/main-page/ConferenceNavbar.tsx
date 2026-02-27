@@ -11,7 +11,6 @@ const navItems = [
     { name: "Home", href: "/conference/international-legal-conference-2026#home" },
     { name: "About", href: "/conference/international-legal-conference-2026/about" },
     { name: "Themes", href: "/conference/international-legal-conference-2026/themes" },
-    // { name: "Dates", href: "/conference/international-legal-conference-2026/dates" },
     { name: "Registration fees", href: "/conference/international-legal-conference-2026/registration" },
     { name: "Speakers", href: "/conference/international-legal-conference-2026/speakers" },
     { name: "Contact", href: "/conference/international-legal-conference-2026/contact" },

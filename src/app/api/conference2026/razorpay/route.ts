@@ -41,6 +41,9 @@ export async function POST(req: NextRequest) {
             amount: amountInSubunits,
             currency: currency,
             receipt: `rcptid_${entryId}_${Date.now()}`,
+            notes: {
+                entryId: String(entryId)
+            }
         };
 
         const order = await razorpay.orders.create(options);

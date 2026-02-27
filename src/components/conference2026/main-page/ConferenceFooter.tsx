@@ -26,9 +26,9 @@ export function ConferenceFooter() {
                         <div className="space-y-4 pt-4 border-t border-border/40">
                             <h3 className="font-heading text-lg font-semibold text-foreground">Conference</h3>
                             <ul className="space-y-2 text-muted-foreground">
-                                <li><Link href="#about" className="hover:text-primary transition-colors">About the Conference</Link></li>
-                                <li><Link href="#themes" className="hover:text-primary transition-colors">Themes & Tracks</Link></li>
-                                <li><Link href="#important-dates" className="hover:text-primary transition-colors">Speakers & Schedule</Link></li>
+                                <li><Link href="/conference/international-legal-conference-2026/about" className="hover:text-primary transition-colors">About the Conference</Link></li>
+                                <li><Link href="/conference/international-legal-conference-2026/themes" className="hover:text-primary transition-colors">Themes & Tracks</Link></li>
+                                <li><Link href="/conference/international-legal-conference-2026/speakers" className="hover:text-primary transition-colors">Speakers & Schedule</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -38,19 +38,20 @@ export function ConferenceFooter() {
                         <h3 className="font-heading text-lg font-semibold text-foreground">Participation</h3>
                         <ul className="space-y-2 text-muted-foreground">
                             <li><Link href="/conference/international-legal-conference-2026/registration" className="hover:text-primary transition-colors">Registration</Link></li>
-                            <li><Link href="/conference/international-legal-conference-2026/registration" className="hover:text-primary transition-colors">Advertisement</Link></li>
-                            <li><Link href="/conference/international-legal-conference-2026/call-for-papers" className="hover:text-primary transition-colors">Publication</Link></li>
+                            <li><Link href="/conference/international-legal-conference-2026/advertisement" className="hover:text-primary transition-colors">Advertisement</Link></li>
+                            <li><Link href="/conference/international-legal-conference-2026/publication" className="hover:text-primary transition-colors">Publication</Link></li>
+                            <li><Link href="/conference/international-legal-conference-2026/guidelines" className="hover:text-primary transition-colors">Guidelines</Link></li>
+                            
                         </ul>
                     </div>
 
                     {/* Column 3: Guidelines */}
                     <div className="space-y-4">
-                        <h3 className="font-heading text-lg font-semibold text-foreground">Guidelines</h3>
+                        <h3 className="font-heading text-lg font-semibold text-foreground">Resources</h3>
                         <ul className="space-y-2 text-muted-foreground">
-                            <li><Link href="/conference/international-legal-conference-2026/faq" className="hover:text-primary transition-colors">Resources</Link></li>
-                            <li><Link href="/conference/international-legal-conference-2026/faq" className="hover:text-primary transition-colors">Refund & Policy</Link></li>
                             <li><Link href="/conference/international-legal-conference-2026/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
-                            <li><Link href="/contact" className="hover:text-primary transition-colors">Contact Us</Link></li>
+                            <li><Link href="/conference/international-legal-conference-2026/contact" className="hover:text-primary transition-colors">Contact Us</Link></li>
+                            <li><Link href="/conference/international-legal-conference-2026/refund-policy" className="hover:text-primary transition-colors">Refund & Policy</Link></li>
                         </ul>
                     </div>
 
@@ -61,7 +62,7 @@ export function ConferenceFooter() {
                             <ul className="space-y-2 text-muted-foreground">
                                 <li><Link href="/about" className="hover:text-primary transition-colors">About CLE</Link></li>
                                 <li><Link href="/products/journals" className="hover:text-primary transition-colors">Our Journals</Link></li>
-                                <li><Link href="/contact" className="hover:text-primary transition-colors">Get in Touch</Link></li>
+                                <li><Link href="/conference/international-legal-conference-2026/contact" className="hover:text-primary transition-colors">Get in Touch</Link></li>
                             </ul>
                         </div>
 
